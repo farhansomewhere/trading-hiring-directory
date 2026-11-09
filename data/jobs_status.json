@@ -198,10 +198,10 @@
 "reason": ""
 },
 "bitstamp.net": {
-"state": "not fetched",
+"state": "fetched",
 "jobs": 0,
-"source": "web page",
-"reason": "no job listings found on the page"
+"source": "workable via careers page",
+"reason": "board is live with 0 open roles"
 },
 "bitunix.com": {
 "state": "not fetched",
@@ -565,7 +565,7 @@
 },
 "eightcap.com": {
 "state": "fetched",
-"jobs": 8,
+"jobs": 7,
 "source": "workable",
 "reason": ""
 },
