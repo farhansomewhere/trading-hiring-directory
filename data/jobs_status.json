@@ -1,0 +1,2312 @@
+{
+"activtrades.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"acy.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"admiralmarkets.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "workable",
+"reason": ""
+},
+"alpari.com": {
+"state": "fetched",
+"jobs": 18,
+"source": "smartrecruiters",
+"reason": ""
+},
+"alphacapitalgroup.uk": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"altcointrader.co.za": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"amana.app": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"amarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"apex.exchange": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"apextraderfunding.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "rippling",
+"reason": ""
+},
+"aquafunded.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"archax.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"asterdex.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "lever via careers page",
+"reason": ""
+},
+"audacity.capital": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"avatrade.com": {
+"state": "fetched",
+"jobs": 16,
+"source": "comeet",
+"reason": ""
+},
+"axi.com": {
+"state": "fetched",
+"jobs": 32,
+"source": "greenhouse",
+"reason": ""
+},
+"backpack.exchange": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"binance.com": {
+"state": "fetched",
+"jobs": 221,
+"source": "greenhouse",
+"reason": ""
+},
+"bingx.com": {
+"state": "fetched",
+"jobs": 24,
+"source": "moka",
+"reason": ""
+},
+"bit2me.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "web page (structured data)",
+"reason": ""
+},
+"bitazza.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "breezy",
+"reason": "board is live with 0 open roles"
+},
+"bitbank.cc": {
+"state": "fetched",
+"jobs": 25,
+"source": "hrmos",
+"reason": ""
+},
+"bitfinex.com": {
+"state": "fetched",
+"jobs": 24,
+"source": "recruitee",
+"reason": ""
+},
+"bitflyer.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bitget.com": {
+"state": "fetched",
+"jobs": 246,
+"source": "moka",
+"reason": ""
+},
+"bithumb.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bitkub.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bitlo.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bitoasis.net": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"bitonic.nl": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"bitopro.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bitpanda.com": {
+"state": "fetched",
+"jobs": 43,
+"source": "greenhouse",
+"reason": ""
+},
+"bitso.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "bamboohr",
+"reason": ""
+},
+"bitstamp.net": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"bitunix.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 10 job links but publishes no machine-readable job data"
+},
+"bitvavo.com": {
+"state": "fetched",
+"jobs": 15,
+"source": "ashby",
+"reason": ""
+},
+"blackbull.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"blofin.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"blueguardian.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"blueberrymarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bluefin.io": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"brasilbitcoin.com.br": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bsgroup.com.hk": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bsdex.de": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"btcc.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"btcturk.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"btse.com": {
+"state": "fetched",
+"jobs": 36,
+"source": "lever",
+"reason": ""
+},
+"buda.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bullish.com": {
+"state": "fetched",
+"jobs": 22,
+"source": "workday",
+"reason": ""
+},
+"busha.io": {
+"state": "fetched",
+"jobs": 8,
+"source": "breezy",
+"reason": ""
+},
+"bybit.com": {
+"state": "fetched",
+"jobs": 151,
+"source": "greenhouse",
+"reason": ""
+},
+"bydfi.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"capex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"capital.com": {
+"state": "fetched",
+"jobs": 52,
+"source": "lever",
+"reason": ""
+},
+"century.ae": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"cex.io": {
+"state": "fetched",
+"jobs": 6,
+"source": "bamboohr",
+"reason": ""
+},
+"cityindex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"citytradersimperium.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"cmcmarkets.com": {
+"state": "fetched",
+"jobs": 73,
+"source": "workday",
+"reason": ""
+},
+"cmtrading.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"coinbase.com": {
+"state": "fetched",
+"jobs": 285,
+"source": "greenhouse",
+"reason": ""
+},
+"coincheck.com": {
+"state": "fetched",
+"jobs": 6,
+"source": "herp",
+"reason": ""
+},
+"coindcx.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "pinpoint",
+"reason": "board is live with 0 open roles"
+},
+"coinexx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"coinhouse.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"coinjar.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"coinmerce.io": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"coinone.co.kr": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"coins.ph": {
+"state": "fetched",
+"jobs": 83,
+"source": "lever",
+"reason": ""
+},
+"coinspot.com.au": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"coinswitch.co": {
+"state": "fetched",
+"jobs": 6,
+"source": "web page (structured data)",
+"reason": ""
+},
+"coinw.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"cryptofundtrader.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"crypto.com": {
+"state": "fetched",
+"jobs": 97,
+"source": "lever",
+"reason": ""
+},
+"cryptomkt.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"currency.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "peopleforce",
+"reason": ""
+},
+"cwgmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"darwinex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"daytraders.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"delta.exchange": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 6 job links but publishes no machine-readable job data"
+},
+"deribit.com": {
+"state": "fetched",
+"jobs": 285,
+"source": "greenhouse",
+"reason": ""
+},
+"deriv.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"didimax.co.id": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"digitalx.miraeasset.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fx.dmm.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"bossa.pl": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"dooprime.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"dydx.xyz": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"earn2trade.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"easymarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.easymarkets.com/eu/about/careers/\nCall log:\n\u001b[2m  - navigati"
+},
+"ebc.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"ecmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"edgex.exchange": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"edxmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"eightcap.com": {
+"state": "fetched",
+"jobs": 8,
+"source": "workable",
+"reason": ""
+},
+"equiti.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"errante.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"etoro.com": {
+"state": "fetched",
+"jobs": 18,
+"source": "greenhouse",
+"reason": ""
+},
+"evest.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"exante.eu": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"exness.com": {
+"state": "fetched",
+"jobs": 35,
+"source": "greenhouse",
+"reason": ""
+},
+"finecobank.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"finex.co.id": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"finst.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "web page (structured data)",
+"reason": ""
+},
+"flatex.de": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"forex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"fortrade.com": {
+"state": "fetched",
+"jobs": 2,
+"source": "teamtailor",
+"reason": ""
+},
+"foxbit.com.br": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fpmarkets.com": {
+"state": "fetched",
+"jobs": 35,
+"source": "workable",
+"reason": ""
+},
+"ftmo.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fundednext.com": {
+"state": "fetched",
+"jobs": 46,
+"source": "recruitee_host",
+"reason": ""
+},
+"funderpro.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "bamboohr",
+"reason": "board is live with 0 open roles"
+},
+"fundingpips.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "pinpoint",
+"reason": ""
+},
+"fusionmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"fxcm.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fxgt.com": {
+"state": "fetched",
+"jobs": 5,
+"source": "bamboohr",
+"reason": ""
+},
+"fxify.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fxprimus.com": {
+"state": "fetched",
+"jobs": 3,
+"source": "bamboohr",
+"reason": ""
+},
+"fxpro.com": {
+"state": "fetched",
+"jobs": 43,
+"source": "greenhouse",
+"reason": ""
+},
+"fxtrade.co.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"fxtm.com": {
+"state": "fetched",
+"jobs": 18,
+"source": "smartrecruiters",
+"reason": ""
+},
+"fxview.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gaitame.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gate.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gbebrokers.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gcmyatirim.com.tr": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gedik.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"gemini.com": {
+"state": "fetched",
+"jobs": 27,
+"source": "greenhouse",
+"reason": ""
+},
+"click-sec.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"coin.z.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"goatfundedtrader.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"gopax.co.kr": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"gtcfx.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "bamboohr",
+"reason": ""
+},
+"gains.trade": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hantecmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hashkey.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hfm.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hirose-fx.co.jp": {
+"state": "fetched",
+"jobs": 2,
+"source": "web page (structured data)",
+"reason": ""
+},
+"hotcoin.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"hsb.co.id": {
+"state": "fetched",
+"jobs": 5,
+"source": "web page (structured data)",
+"reason": ""
+},
+"htx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hycm.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"hyrotrader.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"ibroker.es": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"icmarkets.com": {
+"state": "fetched",
+"jobs": 21,
+"source": "bamboohr",
+"reason": ""
+},
+"icm.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"icrypex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"iforex.eu": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"ig.com": {
+"state": "fetched",
+"jobs": 83,
+"source": "workday",
+"reason": ""
+},
+"independentreserve.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "web page (structured data)",
+"reason": ""
+},
+"indodax.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"infinox.com": {
+"state": "fetched",
+"jobs": 3,
+"source": "bamboohr",
+"reason": ""
+},
+"ingot.io": {
+"state": "fetched",
+"jobs": 24,
+"source": "bamboohr",
+"reason": ""
+},
+"instaforex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"instantfunding.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"integralyatirim.com.tr": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"interactivebrokers.com": {
+"state": "fetched",
+"jobs": 25,
+"source": "web page (structured data)",
+"reason": ""
+},
+"invast.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"iqoption.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"iux.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"jfdbank.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"justmarkets.com": {
+"state": "fetched",
+"jobs": 127,
+"source": "greenhouse",
+"reason": ""
+},
+"kcmtrade.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"keytomarkets.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "bamboohr",
+"reason": ""
+},
+"kraken.com": {
+"state": "fetched",
+"jobs": 89,
+"source": "ashby",
+"reason": ""
+},
+"kucoin.com": {
+"state": "fetched",
+"jobs": 32,
+"source": "moka",
+"reason": ""
+},
+"latoken.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "breezy",
+"reason": ""
+},
+"lbank.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"lcx.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"libertex.com": {
+"state": "fetched",
+"jobs": 9,
+"source": "workable",
+"reason": ""
+},
+"litefinance.org": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"lmax.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"luno.com": {
+"state": "fetched",
+"jobs": 2,
+"source": "greenhouse",
+"reason": ""
+},
+"m2.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "recruitee",
+"reason": "board did not answer"
+},
+"m4markets.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "bamboohr",
+"reason": ""
+},
+"margex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"markets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"maventrading.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"max.maicoin.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"maxco.co.id": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"mentfunding.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"mercadobitcoin.com.br": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"mexc.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"mitrade.com": {
+"state": "fetched",
+"jobs": 2,
+"source": "smartrecruiters",
+"reason": ""
+},
+"monetamarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"www.monex.co.jp": {
+"state": "fetched",
+"jobs": 14,
+"source": "web page (structured data)",
+"reason": ""
+},
+"mifx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"m2j.co.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"mudrex.com": {
+"state": "fetched",
+"jobs": 3,
+"source": "web page (structured data)",
+"reason": ""
+},
+"multibankfx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"myfundedfutures.com": {
+"state": "fetched",
+"jobs": 8,
+"source": "greenhouse",
+"reason": ""
+},
+"naga.com": {
+"state": "fetched",
+"jobs": 10,
+"source": "peopleforce",
+"reason": ""
+},
+"ndax.io": {
+"state": "fetched",
+"jobs": 8,
+"source": "workable",
+"reason": ""
+},
+"netcoins.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"newton.co": {
+"state": "fetched",
+"jobs": 5,
+"source": "lever",
+"reason": ""
+},
+"nexo.com": {
+"state": "fetched",
+"jobs": 22,
+"source": "breezy",
+"reason": ""
+},
+"noorcapital.ae": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"nordfx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"oanda.com": {
+"state": "fetched",
+"jobs": 26,
+"source": "workday",
+"reason": ""
+},
+"octafx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
+},
+"okx.com": {
+"state": "fetched",
+"jobs": 377,
+"source": "greenhouse",
+"reason": ""
+},
+"oneroyal.com": {
+"state": "fetched",
+"jobs": 15,
+"source": "bamboohr",
+"reason": ""
+},
+"opofinance.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"orbex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"orbixtrade.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"orderly.network": {
+"state": "fetched",
+"jobs": 14,
+"source": "greenhouse",
+"reason": ""
+},
+"osl.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"ostium.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "ashby",
+"reason": "board is live with 0 open roles"
+},
+"ovex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"oxsecurities.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "web page (structured data)",
+"reason": ""
+},
+"paradex.trade": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"paribu.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 1 job links but publishes no machine-readable job data"
+},
+"paymium.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "web page (structured data)",
+"reason": ""
+},
+"pdax.ph": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"pepperstone.com": {
+"state": "fetched",
+"jobs": 19,
+"source": "workable",
+"reason": ""
+},
+"phemex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"phillipnova.com.sg": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 12 job links but publishes no machine-readable job data"
+},
+"plus500.com": {
+"state": "fetched",
+"jobs": 15,
+"source": "comeet",
+"reason": ""
+},
+"primexbt.com": {
+"state": "fetched",
+"jobs": 21,
+"source": "greenhouse",
+"reason": ""
+},
+"purple-trading.com": {
+"state": "fetched",
+"jobs": 3,
+"source": "lever",
+"reason": ""
+},
+"qtfunded.com": {
+"state": "fetched",
+"jobs": 4,
+"source": "web page (structured data)",
+"reason": ""
+},
+"questrade.com": {
+"state": "fetched",
+"jobs": 25,
+"source": "web page (structured data)",
+"reason": ""
+},
+"quidax.io": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"rain.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"rakuten-sec.co.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 1 job links but publishes no machine-readable job data"
+},
+"rebelsfunding.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"reku.id": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 3 job links but publishes no machine-readable job data"
+},
+"ripio.com": {
+"state": "fetched",
+"jobs": 5,
+"source": "web page (structured data)",
+"reason": ""
+},
+"roqqu.io": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"satoshitango.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"home.saxo": {
+"state": "fetched",
+"jobs": 62,
+"source": "workday",
+"reason": ""
+},
+"sbivc.co.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"scopemarkets.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "bamboohr",
+"reason": ""
+},
+"skilling.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "workable",
+"reason": "board is live with 0 open roles"
+},
+"spreadex.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "teamtailor",
+"reason": "board is live with 0 open roles"
+},
+"startrader.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 12 job links but publishes no machine-readable job data"
+},
+"swissborg.com": {
+"state": "fetched",
+"jobs": 9,
+"source": "lever",
+"reason": ""
+},
+"swissquote.com": {
+"state": "fetched",
+"jobs": 38,
+"source": "smartrecruiters",
+"reason": ""
+},
+"swyftx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"tradetaurex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"tentrade.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"thetradingpit.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"the5ers.com": {
+"state": "fetched",
+"jobs": 6,
+"source": "comeet",
+"reason": ""
+},
+"thinkmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"tickmill.com": {
+"state": "fetched",
+"jobs": 40,
+"source": "bamboohr",
+"reason": ""
+},
+"tiomarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"titanfx.com": {
+"state": "fetched",
+"jobs": 0,
+"source": "teamtailor",
+"reason": "board is live with 0 open roles"
+},
+"tmgm.com": {
+"state": "fetched",
+"jobs": 53,
+"source": "workable",
+"reason": ""
+},
+"tokocrypto.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"toobit.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 1 job links but publishes no machine-readable job data"
+},
+"topfx.com": {
+"state": "fetched",
+"jobs": 3,
+"source": "bamboohr",
+"reason": ""
+},
+"topstep.com": {
+"state": "fetched",
+"jobs": 20,
+"source": "greenhouse",
+"reason": ""
+},
+"tradenation.com": {
+"state": "fetched",
+"jobs": 61,
+"source": "workable",
+"reason": ""
+},
+"trade.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"tradeify.co": {
+"state": "fetched",
+"jobs": 4,
+"source": "ashby",
+"reason": ""
+},
+"min-fx.jp": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"trading212.com": {
+"state": "fetched",
+"jobs": 58,
+"source": "ashby",
+"reason": ""
+},
+"trading.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"trive.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.trive.com/careers\nCall log:\n\u001b[2m  - navigating to \"https://w"
+},
+"tvmarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "LinkedIn",
+"reason": "LinkedIn blocks automated reading; not fetched"
+},
+"ultimamarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"upbit.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 10 job links but publishes no machine-readable job data"
+},
+"uphold.com": {
+"state": "fetched",
+"jobs": 7,
+"source": "bamboohr",
+"reason": ""
+},
+"valbury.co.id": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page lists 4 job links but publishes no machine-readable job data"
+},
+"valr.com": {
+"state": "fetched",
+"jobs": 1,
+"source": "hibob",
+"reason": ""
+},
+"vantagemarkets.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"veranta.xyz": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://avantisfi.notion.site/Senior-Backend-Engin"
+},
+"vtmarkets.com": {
+"state": "fetched",
+"jobs": 37,
+"source": "hibob",
+"reason": ""
+},
+"wazirx.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"weex.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"weltrade.com": {
+"state": "fetched",
+"jobs": 6,
+"source": "peopleforce",
+"reason": ""
+},
+"whitebit.com": {
+"state": "fetched",
+"jobs": 41,
+"source": "greenhouse",
+"reason": ""
+},
+"windsorbrokers.com": {
+"state": "fetched",
+"jobs": 7,
+"source": "bamboohr",
+"reason": ""
+},
+"woox.io": {
+"state": "fetched",
+"jobs": 2,
+"source": "greenhouse",
+"reason": ""
+},
+"xm.com": {
+"state": "fetched",
+"jobs": 63,
+"source": "lever",
+"reason": ""
+},
+"xs.com": {
+"state": "fetched",
+"jobs": 14,
+"source": "bamboohr",
+"reason": ""
+},
+"xt.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"xtb.com": {
+"state": "fetched",
+"jobs": 45,
+"source": "lever",
+"reason": ""
+},
+"youngplatform.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"zebpay.com": {
+"state": "not fetched",
+"jobs": 0,
+"source": "web page",
+"reason": "no job listings found on the page"
+},
+"zfx.com": {
+"state": "fetched",
+"jobs": 85,
+"source": "workable",
+"reason": ""
+},
+"aaafx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"accendomarkets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"adss.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"aevo.xyz": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"alpha-futures.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"atfx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"axiory.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"bdswiss.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"bitrue.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"breakoutprop.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"brightfunded.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"btcmarkets.net": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"bulenox.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"capitaria.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"central-tanshifx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"cfi.trade": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"coinhako.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"coinmate.io": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"coinmena.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"cointr.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"cptmarkets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"deltastock.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"digifinex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"digitalsurge.com.au": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"directa.it": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"dukascopy.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"e8markets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"elitetraderfunding.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"exclusivemarkets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"extended.exchange": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fbs.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fibogroup.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fintokei.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fortraders.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fortuneprime.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"ftuk.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fundedfuturesfamily.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fundedfuturesnetwork.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fundedtradingplus.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fxcc.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"myfxchoice.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fxdd.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fxopen.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"fxtrading.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"gaitameonline.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"giottus.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"globalprime.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"gmx.io": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"gomarkets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"grandcapital.net": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"hw.site": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"hitbtc.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"holaprime.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"hugosway.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"hyperliquid.xyz": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"ifxbrokers.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"ironfx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"jup.ag": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"kanga.global": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"koinbx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"leelootrading.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"lighter.xyz": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"lirunex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"lcg.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"lucidtrading.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"luxtradingfirm.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"markets4you.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"moneypartners.co.jp": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"olymptrade.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"oneuptrader.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"orionfunded.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"pacifica.fi": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"pi42.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"pintu.co.id": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"pionex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"pipfarm.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"poloniex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"puprime.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"rakuten-wallet.co.jp": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"roboforex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"sbifxt.co.jp": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"simplefx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"sinegy.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"stormgain.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"synthetix.io": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"takeprofittrader.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"toponefutures.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"toponetrader.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"tradethepool.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"trade245.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"tradeday.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"valutrades.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"virgocx.ca": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"whselfinvest.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"zaif.jp": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"zeromarkets.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"zoomex.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"bullwaves.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"blockchain.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"tbmfunded.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"tradewill.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"quadcode.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"dbinvesting.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+},
+"lbx.com": {
+"state": "no job board",
+"jobs": 0,
+"source": "",
+"reason": "no job board in the directory"
+}
+}

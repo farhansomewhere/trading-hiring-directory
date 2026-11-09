@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trading Hiring Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: app shell — header + segmented section tabs, a filter toolbar, a paginated data table, and a details drawer */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --raised:#fbfcfd; --fg:#14212b; --muted:#5b6b78; --line:#dde3e8; --line-strong:#c5cfd7;
+  --accent:#0b6e8a; --accent-bg:#e3f1f5; --on-accent:#ffffff;
+  --good:#1f7a3a; --good-bg:#e4f3e8; --bad:#b4372f; --bad-bg:#fbe7e5; --warn:#a14b00; --warn-bg:#fdeedd;
+  --cx:#8a5a00; --cx-bg:#fbf0d9; --cfd:#7a3e9d; --cfd-bg:#f2e8f8; --prop:#2f6b3a; --prop-bg:#e4f2e6;
+  --shadow:0 10px 30px rgba(16,30,40,.18);
+  --display:"Familjen Grotesk",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0e161c; --surface:#152029; --raised:#182530; --fg:#e4ebf0; --muted:#93a4b1; --line:#24333e; --line-strong:#33475570;
+  --accent:#5cc3df; --accent-bg:#14323d; --on-accent:#08202a;
+  --good:#7fd197; --good-bg:#183324; --bad:#f19a92; --bad-bg:#3a1d1b; --warn:#f0a35e; --warn-bg:#3b2512;
+  --cx:#e8b65a; --cx-bg:#3a2c12; --cfd:#c99be3; --cfd-bg:#2f2139; --prop:#86cf92; --prop-bg:#1b3320;
+  --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.5}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1500px;margin:0 auto;padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,32px);line-height:1.1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.updated{color:var(--muted);font-size:12.5px}
+
+/* Section tabs: segmented control, obvious and labelled with counts */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:12px;width:fit-content;max-width:100%}
+.tabs a{display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
+.tabs a .n{font-weight:500;font-size:12px;color:var(--muted);background:var(--bg);padding:1px 8px;border-radius:999px;font-variant-numeric:tabular-nums}
+.tabs a:hover{background:var(--bg)}
+.tabs a[aria-current=page]{background:var(--accent);color:var(--on-accent)}
+.tabs a[aria-current=page] .n{background:rgba(255,255,255,.22);color:var(--on-accent)}
+.lede{margin:-6px 0 0;color:var(--muted);font-size:13.5px;max-width:90ch}
+
+/* Sub-tabs inside Affiliate */
+.subtabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line)}
+.subtabs button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:8px 12px;cursor:pointer;color:var(--muted);font-weight:600}
+.subtabs button .n{font-weight:500;font-size:12px;margin-left:4px}
+.subtabs button[aria-selected=true]{color:var(--fg);border-bottom-color:var(--accent)}
+
+/* Toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.toolbar input[type=search]{flex:1 1 240px;min-width:0;padding:8px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface)}
+.toolbar select{padding:7px 8px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);max-width:220px}
+.btn{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn:disabled{opacity:.45;cursor:default}
+.resultline{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:4px 11px;cursor:pointer;font-size:12.5px}
+.chip[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* Table */
+.tablewrap{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:auto;max-height:calc(100dvh - 230px);min-height:240px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums}
+thead th{position:sticky;top:0;z-index:2;background:var(--raised);text-align:left;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line-strong);white-space:nowrap;user-select:none}
+thead th.sortable{cursor:pointer}
+thead th.sortable:hover{color:var(--fg)}
+thead th .arr{display:inline-block;width:1em;color:var(--accent)}
+thead th[title]{text-decoration:underline dotted;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+tbody tr:hover td{background:var(--raised)}
+tbody tr.clickable{cursor:pointer}
+td.idx{color:var(--muted);width:3.5em}
+td.pos{font-weight:600;min-width:22ch;max-width:40ch}
+td.nw{white-space:nowrap}
+td.url{max-width:32ch}
+td.url a{display:block;max-width:32ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:12px}
+a.url{font-family:var(--mono);font-size:12px;word-break:break-all}
+td.wr{min-width:14ch;max-width:30ch}
+.dash{color:var(--muted)}
+.empty{padding:40px 16px;text-align:center;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:4px;white-space:nowrap;background:var(--accent-bg);color:var(--accent)}
+.tag.cx{background:var(--cx-bg);color:var(--cx)} .tag.cfd{background:var(--cfd-bg);color:var(--cfd)} .tag.prop{background:var(--prop-bg);color:var(--prop)}
+.tag.good{background:var(--good-bg);color:var(--good)} .tag.bad{background:var(--bad-bg);color:var(--bad)} .tag.warn{background:var(--warn-bg);color:var(--warn)}
+.tag.muted{background:var(--bg);color:var(--muted)}
+.score{font-family:var(--mono);font-size:12px}
+.dec{display:flex;gap:6px;white-space:nowrap}
+.dec .btn{padding:4px 9px;font-size:12.5px}
+.dec .btn.yes[aria-pressed=true]{background:var(--good-bg);border-color:var(--good);color:var(--good);font-weight:600}
+.dec .btn.no[aria-pressed=true]{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);font-weight:600}
+.by{font-size:11.5px;color:var(--muted);margin-top:4px}
+
+/* Pagination */
+.pager{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}
+.pager .pages{display:flex;flex-wrap:wrap;gap:4px}
+.pager .pages button{min-width:34px;padding:5px 8px;border:1px solid var(--line-strong);background:var(--surface);border-radius:6px;cursor:pointer;font-variant-numeric:tabular-nums}
+.pager .pages button[aria-current=page]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pager .pages button:disabled{opacity:.4;cursor:default}
+.pager select{padding:4px 6px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface)}
+
+/* Drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,18,24,.45);z-index:30}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(760px,100%);background:var(--surface);z-index:31;box-shadow:var(--shadow);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer header{padding:18px 22px 14px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.drawer h2{font-family:var(--display);font-size:22px;line-height:1.2;margin:0;padding-right:40px}
+.drawer .close{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));font-size:20px;line-height:1;padding:6px 10px}
+.drawer .meta{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:13px}
+.drawer .meta b{color:var(--fg);font-weight:600}
+.drawer .actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.drawer .body{padding:18px 22px 28px;overflow:auto;flex:1}
+.drawer .desc{white-space:pre-wrap;font-size:14px;line-height:1.6;max-width:85ch}
+.drawer .quote{border-left:3px solid var(--accent);padding:6px 12px;background:var(--bg);font-size:13px;margin:0 0 14px}
+
+/* Dialog */
+dialog{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--surface);color:var(--fg);box-shadow:var(--shadow);width:min(440px,calc(100% - 32px))}
+dialog::backdrop{background:rgba(10,18,24,.45)}
+dialog form{padding:20px;display:grid;gap:12px}
+dialog h3{margin:0;font-family:var(--display);font-size:18px}
+dialog label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+dialog input,dialog select,dialog textarea{padding:8px 10px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg)}
+dialog .row{display:flex;justify-content:flex-end;gap:8px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:40;font-size:13px;box-shadow:var(--shadow)}
+.notice{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:13px}
+
+/* Overview */
+.ov{display:grid;gap:14px}
+.ovh{font-family:var(--display);font-size:17px;margin:8px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.kpi{display:grid;gap:2px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--fg)}
+.kpi:hover{border-color:var(--accent)}
+.kpi b{font-family:var(--display);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi em{font-style:normal;font-size:12px;color:var(--accent)}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 10px;font-size:14px}
+.bars{display:grid;gap:4px}
+.bar{display:grid;grid-template-columns:minmax(0,13ch) 1fr 3ch;gap:10px;align-items:center;background:none;border:0;padding:3px 0;cursor:pointer;text-align:left}
+.bar:hover .bf{filter:brightness(1.1)}
+.bar .bl{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .bt{height:12px;background:var(--bg);border-radius:0 4px 4px 0;overflow:hidden}
+.bar .bf{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
+.bar .bv{font-size:12.5px;font-variant-numeric:tabular-nums;text-align:right;color:var(--fg)}
+.newest{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.newest li{display:grid;gap:1px}
+.newest span{font-size:12px;color:var(--muted)}
+.lnk{background:none;border:0;padding:0;color:var(--accent);text-align:left;cursor:pointer;font-weight:600}
+/* About */
+.about{max-width:900px;display:grid;gap:18px}
+.about h2{font-family:var(--display);font-size:20px;margin:0}
+.about table{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.about td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+.about td:first-child{font-weight:600;width:28%;white-space:nowrap}
+.about p{margin:0;color:var(--muted)}
+@media (max-width:640px){.tabs a{padding:8px 11px;font-size:13px}.tablewrap{max-height:none}thead th{position:static}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Trading Hiring Directory</h1>
+    <span class="updated" title="Data source">Jobs fetched __DATE__ from each company's own job board</span>
+  </header>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#overview" data-v="overview">Overview</a>
+    <a href="#affiliate" data-v="affiliate">Affiliate Jobs <span class="n" id="n-aff"></span></a>
+    <a href="#jobs" data-v="jobs">All Jobs <span class="n" id="n-jobs"></span></a>
+    <a href="#companies" data-v="companies">Companies <span class="n" id="n-co"></span></a>
+    <a href="#activity" data-v="activity">Activity <span class="n" id="n-log"></span></a>
+    <a href="#about" data-v="about">About</a>
+  </nav>
+
+  <section id="v-overview" class="view" hidden><div id="ov" class="ov"></div></section>
+  <section id="v-affiliate" class="view" hidden>
+    <p class="lede">Affiliate, partnership and IB roles. Mark each job <b>Relevant</b> or <b>Not relevant</b>: your decisions are shared with everyone on this page and teach the matching, so <b>Suggested</b> gets better over time.</p>
+    <div class="subtabs" role="tablist" id="affsub"></div>
+    <div id="aff-notice"></div>
+    <div id="t-aff"></div>
+  </section>
+  <section id="v-jobs" class="view" hidden><div id="t-jobs"></div></section>
+  <section id="v-companies" class="view" hidden><div class="subtabs" role="tablist" id="cosub"></div><div id="co-notice"></div><div id="t-co"></div></section>
+  <section id="v-activity" class="view" hidden><p class="lede">Every change your team makes: who did it, what, to which job or company, when, and why. The same log is kept in the shared Google Sheet.</p><div id="log-notice"></div><div id="t-log"></div></section>
+  <section id="v-about" class="view about" hidden>__ABOUT__</section>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="dr-title">
+  <button class="btn ghost close" id="dr-close" aria-label="Close">✕</button>
+  <header><h2 id="dr-title"></h2><div class="meta" id="dr-meta"></div><div class="actions" id="dr-actions"></div></header>
+  <div class="body"><div id="dr-quote"></div><div class="desc" id="dr-desc"></div></div>
+</aside>
+
+<dialog id="dlg"><form method="dialog" id="dlg-form">
+  <h3 id="dlg-h">Mark as relevant</h3>
+  <div id="dlg-co" hidden style="display:grid;gap:12px">
+    <label>Company name<input id="dlg-cname" autocomplete="off"></label>
+    <label>Website<input id="dlg-cweb" placeholder="example.com" autocomplete="off"></label>
+    <label>Category<select id="dlg-ccat"><option>Forex/CFD</option><option>Crypto exchange</option><option>Crypto CFD/derivatives broker</option><option>Prop firm</option></select></label>
+    <label>Job board link (optional)<input id="dlg-cjb" autocomplete="off"></label>
+    <label>LinkedIn (optional)<input id="dlg-cli" autocomplete="off"></label>
+  </div>
+  <label>Your name<select id="dlg-who" required></select></label>
+  <label id="dlg-pass-l">Team passcode<input id="dlg-pass" type="password" autocomplete="off" required></label>
+  <label>Reason (optional, helps the matching learn and is kept in the log)<textarea id="dlg-reason" rows="3" placeholder="e.g. IB acquisition role; or: payments partnership, not affiliate"></textarea></label>
+  <div class="row"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn primary" value="ok" id="dlg-ok">Save</button></div>
+</form></dialog>
+<div class="toast" id="toast" hidden></div>
+
+<script>__DATA__</script>
+<script>
+"use strict";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const naked=u=>String(u||"").replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,"");
+const CN=COUNTRIES, CO={}; DATA.forEach(r=>CO[r.d]=r);
+const CATCLS={"Forex/CFD":"","Crypto exchange":"cx","Crypto CFD/derivatives broker":"cfd","Prop firm":"prop"};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(_){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(_){}}};
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600)}
+const fmtAmt=j=>{if(j.sraw)return j.sraw;const f=x=>x==null?"":Number(x).toLocaleString("en-US",{maximumFractionDigits:2});return j.smin!=null&&j.smax!=null&&j.smin!==j.smax?f(j.smin)+" – "+f(j.smax):f(j.smin??j.smax)};
+const ctry=j=>j.cc.map(c=>CN[c]||c).join(", ");
+const dash='<span class="dash">—</span>';
+
+/* ---------------- shared activity log, decisions + learning ---------------- */
+let LOG=[];            // every action, oldest first
+let DEC={};            // job id -> latest decision row
+let CREM={};           // company domain -> latest remove row (if removed)
+let CADD={};           // added companies: domain -> add row
+let MODEL=null;
+const API=CFG.api;const REJ=new RegExp("\\b("+CFG.rej.join("|")+")\\b","i");
+function applyLog(){DEC={};CREM={};CADD={};
+  LOG.forEach(r=>{if(r.entity==="job"){if(r.action==="clear")delete DEC[r.item_id];else DEC[r.item_id]=r}
+    else if(r.entity==="company"){if(r.action==="remove")CREM[r.item_id]=r;else if(r.action==="restore")delete CREM[r.item_id];else if(r.action==="add"){CADD[r.item_id]=r;delete CREM[r.item_id]}}});
+  // added companies become directory rows (data to be filled on the next refresh)
+  for(let i=DATA.length-1;i>=0;i--)if(DATA[i]._added)DATA.splice(i,1);
+  Object.values(CADD).forEach(r=>{if(DATA.some(x=>x.d===r.item_id))return;let det={};try{det=JSON.parse(r.details||"{}")}catch(_){}
+    DATA.push({_added:true,n:r.company||r.item_id,d:r.item_id,c:det.category||"",li:det.linkedin||"",cp:"",jb:det.job_board||"",ats:"",hc:"",fy:null,vol:"",no:`Added by ${r.who} on ${String(r.timestamp).slice(0,10)}${r.reason?": "+r.reason:""}. Job board and details will be filled on the next data refresh.`})});
+}
+async function loadLog(){
+  if(!API)return;
+  try{const r=await fetch(API,{redirect:"follow"});const j=await r.json();LOG=(j.log||[]).map(x=>({...x,item_id:String(x.item_id)}));applyLog()}
+  catch(_){document.getElementById("aff-notice").innerHTML='<div class="notice">Could not load shared decisions right now; showing the matching rules only. Reload to try again.</div>'}
+}
+const removedCo=d=>!!CREM[d];
+const tok=t=>String(t||"").toLowerCase().replace(/[^\p{L}\p{N}&+ ]+/gu," ").split(/\s+/).filter(w=>w.length>1&&!STOP.has(w));
+const STOP=new Set("the and of for to in a an at with on senior junior lead head manager specialist executive associate director officer remote hybrid".split(" "));
+function feats(j){const cw=new Set(tok(j.c).concat(["program","programme","accelerator"]));const t=tok(j.t).filter(w=>!cw.has(w));const f=t.map(w=>"t:"+w);for(let i=0;i<t.length-1;i++)f.push("b:"+t[i]+"_"+t[i+1]);(j.kw||[]).forEach(k=>f.push("k:"+k));if(j.am)f.push("rule:"+j.am);return f}
+function train(){
+  // labels: team decisions (weight 1); rule matches without a decision (weak positive 0.25); everything else weak negative 0.02
+  const pos={},neg={};let P=0,N=0;const add=(o,fs,w)=>fs.forEach(x=>o[x]=(o[x]||0)+w);
+  JOBS.forEach(j=>{const d=DEC[j.id];const fs=feats(j);
+    if(d){if(d.action==="relevant"){add(pos,fs,1);P+=1}else{add(neg,fs,1);N+=1}}
+    else if(j.aff&&!j.rej){add(pos,fs,.25);P+=.25}else{add(neg,fs,.02);N+=.02}});
+  const V=new Set([...Object.keys(pos),...Object.keys(neg)]);const sp=Object.values(pos).reduce((a,b)=>a+b,0),sn=Object.values(neg).reduce((a,b)=>a+b,0);
+  const w={};V.forEach(x=>w[x]=Math.log(((pos[x]||0)+.1)/(sp+.1*V.size))-Math.log(((neg[x]||0)+.1)/(sn+.1*V.size)));
+  MODEL={w,prior:Math.log(P/N)};
+}
+function score(j){if(!MODEL)return 0;let s=MODEL.prior;feats(j).forEach(x=>s+=MODEL.w[x]||0);return 1/(1+Math.exp(-s))}
+function why(j){if(!MODEL)return"";return feats(j).map(x=>[x,MODEL.w[x]||0]).filter(a=>a[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(a=>a[0].replace(/^[tbk]:|^rule:/,"").replace("_"," ")).join(", ")}
+function inList(j){const d=DEC[j.id];if(d)return d.action==="relevant";return j.aff&&!j.rej}
+function computeAff(){
+  train();JOBS.forEach(j=>j.sc_=score(j));
+  const L={list:[],sugg:[],removed:[],rejected:[]};
+  JOBS.forEach(j=>{if(removedCo(j.d))return;const d=DEC[j.id];
+    if(inList(j))L.list.push(j);
+    else if(d&&d.action==="not_relevant")L.removed.push(j);
+    else if(j.aff&&j.rej)L.rejected.push(j);
+    else if(j.sc_>=CFG.th&&!REJ.test(j.t))L.sugg.push(j)});
+  L.sugg.sort((a,b)=>b.sc_-a.sc_);return L;
+}
+
+/* ---------------- saving actions ---------------- */
+const dlg=document.getElementById("dlg");
+document.getElementById("dlg-who").innerHTML=CFG.people.map(p=>`<option>${esc(p)}</option>`).join("");
+const LABEL={relevant:"Mark job as relevant",not_relevant:"Mark job as not relevant",clear:"Clear decision",remove:"Remove company",restore:"Restore company",add:"Add a company"};
+function act(entity,action,item,onDone){
+  if(!API){toast("Saving isn't connected yet. The Google Sheet web app address needs to be added first.");return}
+  const who=store.get("who",""),pass=store.get("pass","");
+  document.getElementById("dlg-h").textContent=LABEL[action];
+  document.getElementById("dlg-co").hidden=action!=="add";
+  ["dlg-cname","dlg-cweb"].forEach(id=>document.getElementById(id).required=action==="add");
+  document.getElementById("dlg-who").value=who||CFG.people[0];
+  document.getElementById("dlg-pass").value=pass;document.getElementById("dlg-pass-l").hidden=!!pass;
+  document.getElementById("dlg-reason").value="";
+  document.getElementById("dlg-reason").placeholder=entity==="company"?"e.g. not a broker / out of scope; or: hires IB managers in LATAM":"e.g. IB acquisition role; or: payments partnership, not affiliate";
+  dlg.onclose=async()=>{if(dlg.returnValue!=="ok")return;
+    let body={passcode:document.getElementById("dlg-pass").value,entity,action,who:document.getElementById("dlg-who").value,reason:document.getElementById("dlg-reason").value};
+    if(entity==="job")body={...body,item_id:item.id,title:item.t,company:item.c,url:item.u,details:{row:item._row||"",posted:item.p,board:item.via}};
+    else if(action==="add"){const web=document.getElementById("dlg-cweb").value.trim().replace(/^https?:\/\/(www\.)?/,"").replace(/\/.*$/,"").toLowerCase();
+      body={...body,item_id:web,title:"",company:document.getElementById("dlg-cname").value.trim(),url:"https://"+web,details:{category:document.getElementById("dlg-ccat").value,job_board:document.getElementById("dlg-cjb").value.trim(),linkedin:document.getElementById("dlg-cli").value.trim()}}}
+    else body={...body,item_id:item.d,title:"",company:item.n,url:"https://"+item.d,details:{job_board:item.jb||"",category:item.c||""}};
+    try{const r=await fetch(API,{method:"POST",body:JSON.stringify(body),headers:{"Content-Type":"text/plain;charset=utf-8"},redirect:"follow"});const res=await r.json();
+      if(!res.ok){toast(res.error==="Wrong passcode"?"Wrong passcode. Check it and try again.":"Not saved: "+res.error);if(res.error==="Wrong passcode")store.set("pass","");return}
+      store.set("who",body.who);store.set("pass",body.passcode);
+      LOG.push({timestamp:new Date().toISOString(),entity,item_id:String(body.item_id),action,who:body.who,reason:body.reason,title:body.title,company:body.company,url:body.url,details:JSON.stringify(body.details||{})});
+      applyLog();toast("Saved: "+LABEL[action].toLowerCase());refreshAll();if(onDone)onDone()}
+    catch(_){toast("Not saved: could not reach the Google Sheet. Try again.")}};
+  dlg.showModal();
+}
+const decideJob=(j,a)=>act("job",a,j,()=>{if(!document.getElementById("drawer").hidden)openDrawer(j)});
+function decCell(j){const d=DEC[j.id];const r=d&&d.action==="relevant",n=d&&d.action==="not_relevant";
+  return `<div class="dec"><button class="btn yes" data-act="relevant" aria-pressed="${!!r}" title="Relevant: add to the affiliate list">✓ Relevant</button><button class="btn no" data-act="not_relevant" aria-pressed="${!!n}" title="Not relevant: remove from the affiliate list">✕ Not</button></div>`+(d?`<div class="by">${esc(d.who)}, ${esc(String(d.timestamp).slice(0,10))}${d.reason?": "+esc(d.reason):""}</div>`:"")}
+
+/* ---------------- generic paginated table ---------------- */
+function Table(host,opt){
+  const st={q:"",f:{},sort:opt.sort||null,dir:opt.dir||1,page:1,size:store.get("size",50)};
+  host.innerHTML=`<div style="display:grid;gap:12px"><div class="toolbar">${opt.search?`<input type="search" placeholder="${esc(opt.search)}" aria-label="${esc(opt.search)}">`:""}${(opt.filters||[]).map((f,i)=>`<select data-f="${i}" aria-label="${esc(f.label)}">${f.options().map(o=>`<option value="${esc(o[0])}">${esc(o[1])}</option>`).join("")}</select>`).join("")}<button class="btn ghost" data-clear>Clear filters</button>${opt.csv?`<button class="btn" data-csv>Copy as CSV</button>`:""}</div>
+  <div class="resultline"><span data-count></span>${opt.extra||""}</div>
+  <div class="tablewrap"><table><thead><tr>${opt.cols.map((c,i)=>`<th${c.tip?` title="${esc(c.tip)}"`:""}${c.sort?` class="sortable" data-s="${i}"`:""}>${esc(c.h)}${c.sort?` <span class="arr"></span>`:""}</th>`).join("")}</tr></thead><tbody></tbody></table></div>
+  <div class="pager"><span data-range></span><div class="pages"></div><label>Rows <select data-size>${[25,50,100,200].map(n=>`<option ${n==st.size?"selected":""}>${n}</option>`).join("")}</select></label></div></div>`;
+  const $=s=>host.querySelector(s);
+  const rows=()=>{let r=opt.rows();if(st.q&&opt.match)r=r.filter(x=>opt.match(x,st.q));(opt.filters||[]).forEach((f,i)=>{const v=st.f[i];if(v)r=r.filter(x=>f.test(x,v))});
+    if(st.sort!=null){const c=opt.cols[st.sort];r=[...r].sort((a,b)=>{const x=c.sort(a),y=c.sort(b);if(x==null||x==="")return 1;if(y==null||y==="")return -1;return(typeof x==="number"?x-y:String(x).localeCompare(String(y),undefined,{sensitivity:"base"}))*st.dir})}return r};
+  function render(){const r=rows();const pages=Math.max(1,Math.ceil(r.length/st.size));st.page=Math.min(st.page,pages);const s=(st.page-1)*st.size,slice=r.slice(s,s+st.size);
+    $("[data-count]").textContent=`${r.length.toLocaleString()} ${opt.noun||"rows"}`;
+    $("[data-range]").textContent=r.length?`Showing ${s+1}–${s+slice.length} of ${r.length.toLocaleString()}`:"";
+    host.querySelectorAll("th[data-s] .arr").forEach(a=>a.textContent="");if(st.sort!=null){const a=host.querySelector(`th[data-s="${st.sort}"] .arr`);if(a)a.textContent=st.dir>0?"▲":"▼"}
+    $("tbody").innerHTML=slice.length?slice.map((x,i)=>`<tr class="${opt.onRow?"clickable":""}" data-i="${s+i}">${opt.cols.map(c=>`<td class="${c.cls||""}">${c.td(x,s+i+1)}</td>`).join("")}</tr>`).join(""):`<tr><td colspan="${opt.cols.length}" class="empty">${esc(opt.empty||"Nothing matches these filters.")}</td></tr>`;
+    const pg=$(".pages");const btn=(p,l,dis,cur)=>`<button data-p="${p}" ${dis?"disabled":""} ${cur?'aria-current="page"':""}>${l}</button>`;
+    let h=btn(st.page-1,"‹ Prev",st.page===1);const win=[1,st.page-2,st.page-1,st.page,st.page+1,st.page+2,pages].filter((p,i,a)=>p>=1&&p<=pages&&a.indexOf(p)===i).sort((a,b)=>a-b);
+    let last=0;win.forEach(p=>{if(p-last>1)h+=`<button disabled>…</button>`;h+=btn(p,p,false,p===st.page);last=p});h+=btn(st.page+1,"Next ›",st.page===pages);pg.innerHTML=h;
+    host._cur=r}
+  host.addEventListener("input",e=>{if(e.target.matches("input[type=search]")){st.q=e.target.value.toLowerCase().trim();st.page=1;render()}});
+  host.addEventListener("change",e=>{if(e.target.dataset.f!=null){st.f[e.target.dataset.f]=e.target.value;st.page=1;render()}if(e.target.matches("[data-size]")){st.size=+e.target.value;store.set("size",st.size);st.page=1;render()}});
+  host.addEventListener("click",async e=>{const th=e.target.closest("th[data-s]");if(th){const i=+th.dataset.s;st.dir=st.sort===i?-st.dir:(opt.cols[i].desc?-1:1);st.sort=i;render();return}
+    const p=e.target.closest("button[data-p]");if(p&&!p.disabled){st.page=+p.dataset.p;render();host.querySelector(".tablewrap").scrollTop=0;return}
+    if(e.target.closest("[data-clear]")){st.q="";st.f={};host.querySelectorAll("select[data-f]").forEach(s=>s.value="");const i=host.querySelector("input[type=search]");if(i)i.value="";st.page=1;render();return}
+    if(e.target.closest("[data-csv]")&&opt.csv){const t=opt.csv(host._cur);try{await navigator.clipboard.writeText(t);toast(`Copied ${host._cur.length} rows`)}catch(_){toast("Copy was blocked by the browser")}return}
+    const chip=e.target.closest("[data-chip]");if(chip&&opt.onChip){opt.onChip(chip);st.page=1;render();return}
+    const ab=e.target.closest("[data-act]");const tr=e.target.closest("tr[data-i]");if(!tr)return;const x=host._cur[+tr.dataset.i];
+    if(ab){e.stopPropagation();if(opt.onAct)opt.onAct(x,ab);return}
+    if(e.target.closest("a"))return;if(opt.onRow)opt.onRow(x)});
+  render();return{render,st}
+}
+
+/* ---------------- jobs columns ---------------- */
+const daysAgo=d=>d?Math.floor((Date.now()-Date.parse(d))/864e5):null;
+const jobFilters=()=>[
+  {label:"Country",options:()=>{const c={};JOBS.forEach(j=>(j.cc.length?j.cc:["-"]).forEach(x=>c[x]=(c[x]||0)+1));return[["","Country: any"],["-",`Not stated (${c["-"]||0})`],...Object.keys(c).filter(k=>k!=="-").sort((a,b)=>(CN[a]||a).localeCompare(CN[b]||b)).map(k=>[k,`${CN[k]||k} (${c[k]})`]),...Object.keys(CN).filter(k=>!c[k]).sort((a,b)=>CN[a].localeCompare(CN[b])).map(k=>[k,`${CN[k]} (0)`])]},test:(j,v)=>v==="-"?!j.cc.length:j.cc.includes(v)},
+  {label:"Work Setup",options:()=>[["","Work Setup: any"],["Remote","Remote"],["Hybrid","Hybrid"],["Onsite","Onsite"],["-","Not stated"]],test:(j,v)=>v==="-"?!j.ws:j.ws===v},
+  {label:"Work Authorization",options:()=>[["","Work Authorization: any"],["Required","Required"],["Not Required","Not Required"],["Visa & Relocation Support","Visa & Relocation Support"],["-","Not stated"]],test:(j,v)=>v==="-"?!j.wa:j.wa===v},
+  {label:"Posted",options:()=>[["","Posted: any time"],["7","Last 7 days"],["30","Last 30 days"],["90","Last 90 days"],["-","No date given"]],test:(j,v)=>v==="-"?!j.p:(j.p&&daysAgo(j.p)<=+v)}];
+const jobCols=(extra)=>[
+  {h:"#",cls:"idx",td:(j,n)=>n},
+  {h:"Position",cls:"pos",tip:"Job title exactly as posted. Click a row for the full description.",td:j=>esc(j.t),sort:j=>j.t},
+  {h:"Company",cls:"wr",tip:"Company from the directory",td:j=>esc(j.c),sort:j=>j.c},
+  {h:"Posted Date",cls:"nw",tip:"Date the job board says it was posted; blank if not given",td:j=>j.p||dash,sort:j=>j.p,desc:true},
+  {h:"Application Link",cls:"url",tip:"Where you apply, as given by the job board",td:j=>j.u?`<a href="${esc(j.u)}" title="${esc(j.u)}" target="_blank" rel="noopener">${esc(naked(j.u))}</a>`:dash},
+  ...(extra||[]),
+  {h:"Country",cls:"wr",tip:"Country stated in the job location; blank if only a city is given",td:j=>j.cc.length?esc(ctry(j)):dash,sort:j=>ctry(j)},
+  {h:"Work Setup",cls:"nw",tip:"Remote, Hybrid or Onsite, only when stated",td:j=>j.ws||dash,sort:j=>j.ws},
+  {h:"Work Authorization",cls:"nw",tip:"Only when the posting states it; hover to read the sentence",td:j=>j.wa?`<span title="${esc(j.waq)}" style="text-decoration:underline dotted">${esc(j.wa)}</span>`:dash,sort:j=>j.wa},
+  {h:"Currency",cls:"nw",tip:"Salary currency, as posted",td:j=>esc(j.sc)||dash},
+  {h:"Amount",cls:"nw",tip:"Salary amount or range, as posted",td:j=>esc(fmtAmt(j))||dash,sort:j=>j.smin??j.smax},
+  {h:"Period",cls:"nw",tip:"Salary period, as posted",td:j=>esc(j.sper)||dash},
+  {h:"Description",cls:"nw",tip:"Full job description; opens in a side panel",td:()=>`<button class="btn" data-open>Read</button>`}];
+const csvJobs=r=>["Serial No,Position,Company,Posted Date,Application Link,Country,Work Setup,Work Authorization,Currency,Amount,Period"].concat(r.map((j,i)=>[i+1,j.t,j.c,j.p,j.u,ctry(j),j.ws,j.wa,j.sc,fmtAmt(j),j.sper].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(","))).join("\n");
+
+/* ---------------- drawer ---------------- */
+const cache={};const chunk=k=>cache[k]||(cache[k]=fetch("jobs/desc_"+k+".json").then(r=>r.json()));
+let lastFocus=null;
+async function openDrawer(j){lastFocus=document.activeElement;const dr=document.getElementById("drawer");
+  document.getElementById("dr-title").textContent=j.t;
+  const m=[["Company",j.c],["Posted",j.p],["Country",ctry(j)],["Work setup",j.ws],["Work authorization",j.wa],["Salary",[j.sc,fmtAmt(j),j.sper].filter(Boolean).join(" ")],["Source",j.via]].filter(x=>x[1]);
+  document.getElementById("dr-meta").innerHTML=m.map(x=>`<span>${x[0]}: <b>${esc(x[1])}</b></span>`).join("");
+  const d=DEC[j.id];
+  document.getElementById("dr-actions").innerHTML=(j.u?`<a class="btn primary" href="${esc(j.u)}" target="_blank" rel="noopener">Apply ↗</a><a class="url" href="${esc(j.u)}" target="_blank" rel="noopener">${esc(naked(j.u))}</a>`:"")+`<span style="flex:1"></span>${decCell(j)}`;
+  document.getElementById("dr-quote").innerHTML=j.wa?`<p class="quote"><b>Work authorization, as stated:</b> ${esc(j.waq)}</p>`:"";
+  const ds=document.getElementById("dr-desc");ds.textContent="Loading…";
+  dr.hidden=false;document.getElementById("scrim").hidden=false;document.getElementById("dr-close").focus();
+  try{const t=(await chunk(j.k))[j.id];ds.textContent=t||"The job board gave no description."}catch(_){ds.textContent="Could not load the description. Reload the page and try again."}
+  document.getElementById("dr-actions").onclick=e=>{const a=e.target.closest("[data-act]");if(a)decideJob(j,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act)}}
+function closeDrawer(){document.getElementById("drawer").hidden=true;document.getElementById("scrim").hidden=true;if(lastFocus)lastFocus.focus()}
+document.getElementById("dr-close").onclick=closeDrawer;document.getElementById("scrim").onclick=closeDrawer;
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!document.getElementById("drawer").hidden)closeDrawer()});
+
+/* ---------------- views ---------------- */
+let AFF=null,affView=store.get("affView","list"),affT=null,jobsT=null,coT=null,logT=null,coView="active";
+const AFFV=[["list","Affiliate Jobs","Matched by the rules or marked relevant, minus anything marked not relevant"],["sugg","Suggested","Jobs the learning model rates as likely affiliate roles that aren't in the list yet. Confirm or reject them."],["removed","Removed","Marked not relevant by your team"],["rejected","Rule-rejected","Matched an affiliate title but dropped by the reject words (languages, influencer, medical, etc.) or a non-English posting"]];
+const matchJob=(j,q)=>j.t.toLowerCase().includes(q)||j.c.toLowerCase().includes(q);
+const coRows=()=>DATA.filter(r=>coView==="removed"?removedCo(r.d):!removedCo(r.d));
+function refreshAll(){AFF=computeAff();
+  const jc={};JOBS.forEach(j=>j.d&&(jc[j.d]=(jc[j.d]||0)+1));DATA.forEach(r=>r.oj=jc[r.d]||(STATUS[r.d]&&STATUS[r.d].state==="fetched"?0:null));
+  document.getElementById("n-aff").textContent=AFF.list.length;document.getElementById("n-jobs").textContent=JOBS.filter(j=>!removedCo(j.d)).length.toLocaleString();
+  document.getElementById("n-co").textContent=DATA.filter(r=>!removedCo(r.d)).length;document.getElementById("n-log").textContent=LOG.length;
+  document.getElementById("affsub").innerHTML=AFFV.map(v=>`<button role="tab" data-av="${v[0]}" aria-selected="${v[0]===affView}" title="${esc(v[2])}">${v[1]}<span class="n">${AFF[v[0]].length}</span></button>`).join("");
+  document.getElementById("cosub").innerHTML=[["active","Companies",DATA.filter(r=>!removedCo(r.d)).length],["removed","Removed",DATA.filter(r=>removedCo(r.d)).length]].map(v=>`<button role="tab" data-cv="${v[0]}" aria-selected="${v[0]===coView}">${v[1]}<span class="n">${v[2]}</span></button>`).join("");
+  renderOverview();[affT,jobsT,coT,logT].forEach(t=>t&&t.render())}
+document.getElementById("affsub").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;affView=b.dataset.av;store.set("affView",affView);refreshAll()});
+document.getElementById("cosub").addEventListener("click",e=>{const b=e.target.closest("[data-cv]");if(!b)return;coView=b.dataset.cv;refreshAll()});
+
+/* ---------------- overview ---------------- */
+function bars(rows,go){const max=Math.max(1,...rows.map(r=>r[1]));
+  return rows.length?`<div class="bars">${rows.map(r=>`<button class="bar" data-go="${esc(go(r[0]))}" title="${esc(r[0])}: ${r[1]}"><span class="bl">${esc(r[0])}</span><span class="bt"><span class="bf" style="width:${Math.max(2,r[1]/max*100)}%"></span></span><span class="bv">${r[1]}</span></button>`).join("")}</div>`:'<p class="dash">None yet</p>'}
+const topN=(arr,key,n)=>{const c={};arr.forEach(x=>[].concat(key(x)).forEach(k=>{if(k)c[k]=(c[k]||0)+1}));return Object.entries(c).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,n)};
+function renderOverview(){
+  const co=DATA.filter(r=>!removedCo(r.d)),jobs=JOBS.filter(j=>!removedCo(j.d)),aff=AFF.list;
+  const withJB=co.filter(r=>r.jb).length,fetched=co.filter(r=>STATUS[r.d]&&STATUS[r.d].state==="fetched").length;
+  const hiring=new Set(jobs.map(j=>j.d)),affCo=new Set(aff.map(j=>j.d));
+  const isNew=(j,n)=>(j.p&&daysAgo(j.p)<=n)||(!j.p&&j.fs&&j.fs>CFG.seed&&daysAgo(j.fs)<=n);const recent=aff.filter(j=>isNew(j,7)).length,recent30=aff.filter(j=>isNew(j,30)).length;
+  const remote=aff.filter(j=>j.ws==="Remote").length,visa=aff.filter(j=>j.wa==="Visa & Relocation Support").length,paid=aff.filter(j=>j.smin||j.smax||j.sraw).length;
+  const decided=Object.keys(DEC).length,toReview=AFF.sugg.length;
+  const tile=(n,l,go,sub)=>`<a class="kpi" href="${go}"><b>${typeof n==="number"?n.toLocaleString():n}</b><span>${l}</span>${sub?`<em>${sub}</em>`:""}</a>`;
+  document.getElementById("ov").innerHTML=`
+  <h2 class="ovh">Affiliate opportunities</h2>
+  <div class="kpis">${tile(aff.length,"Affiliate jobs open now","#affiliate")}${tile(affCo.size,"Companies hiring for affiliate roles","#affiliate")}${tile(recent,"New affiliate jobs, last 7 days","#affiliate",recent30+" in the last 30 days")}${tile(remote,"Remote affiliate jobs","#affiliate")}${tile(visa,"Affiliate jobs offering visa / relocation","#affiliate")}${tile(paid,"Affiliate jobs with a salary posted","#affiliate")}</div>
+  <h2 class="ovh">Your team's review</h2>
+  <div class="kpis">${tile(toReview,"Suggested jobs waiting for review","#affiliate",'Open Affiliate Jobs › Suggested')}${tile(decided,"Jobs your team has decided on","#activity")}${tile(Object.keys(CREM).length,"Companies removed","#companies")}${tile(Object.keys(CADD).length,"Companies added","#companies")}${tile(LOG.length,"Actions in the activity log","#activity")}</div>
+  <h2 class="ovh">Market</h2>
+  <div class="kpis">${tile(co.length,"Total companies","#companies")}${tile(withJB,"Companies with a job board","#companies")}${tile(co.length-withJB,"Companies without a job board","#companies")}${tile(hiring.size,"Companies hiring right now","#jobs",fetched+" job boards read")}${tile(jobs.length,"Total open jobs","#jobs")}</div>
+  <div class="ovgrid">
+    <div class="card"><h3>Companies with the most affiliate jobs</h3>${bars(topN(aff,j=>j.c,8),k=>"#affiliate")}</div>
+    <div class="card"><h3>Affiliate jobs by country</h3>${bars(topN(aff,j=>j.cc.length?j.cc.map(c=>CN[c]||c):["Not stated"],8),k=>"#affiliate")}</div>
+    <div class="card"><h3>Newest affiliate jobs</h3><ul class="newest">${[...aff].sort((a,b)=>String(b.p).localeCompare(String(a.p))).slice(0,6).map(j=>`<li><button class="lnk" data-job="${j.id}">${esc(j.t)}</button><span>${esc(j.c)} · ${j.p||"no date"}</span></li>`).join("")||'<li class="dash">None yet</li>'}</ul></div>
+    <div class="card"><h3>Companies hiring the most (all roles)</h3>${bars(topN(jobs,j=>j.c,8),k=>"#jobs")}</div>
+  </div>`;
+}
+document.getElementById("ov").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){location.hash=b.dataset.go;return}const j=e.target.closest("[data-job]");if(j){const x=JOBS.find(y=>y.id===j.dataset.job);if(x)openDrawer(x)}});
+
+/* ---------------- activity log ---------------- */
+const ACTL={relevant:["Marked job relevant","good"],not_relevant:["Marked job not relevant","bad"],clear:["Cleared job decision","muted"],add:["Added company","good"],remove:["Removed company","bad"],restore:["Restored company","muted"]};
+function logRows(){return[...LOG].reverse().map((r,i)=>({...r,_n:LOG.length-i}))}
+
+async function init(){
+  if(!API){const n='<div class="notice">Shared saving isn\'t connected yet, so Relevant / Not relevant and company add / remove won\'t save. Lists use the matching rules.</div>';document.getElementById("aff-notice").innerHTML=n;document.getElementById("co-notice").innerHTML=n;document.getElementById("log-notice").innerHTML=n}
+  await loadLog();AFF=computeAff();
+  affT=Table(document.getElementById("t-aff"),{rows:()=>AFF[affView],search:"Search position or company",match:matchJob,filters:jobFilters(),noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
+    cols:jobCols([{h:"Why matched",cls:"wr",tip:"The title rule that matched, your team's decision, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.action==="relevant"?"good":"bad"}">${d.action==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
+      {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)}]),sort:3,dir:-1,empty:"No jobs here yet."});
+  jobsT=Table(document.getElementById("t-jobs"),{rows:()=>JOBS.filter(j=>!removedCo(j.d)),search:"Search position or company",match:matchJob,filters:[{label:"Company",options:()=>[["","Company: any"],...[...new Set(JOBS.map(j=>j.c))].sort().map(c=>[c,c])],test:(j,v)=>j.c===v},...jobFilters()],noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
+    cols:jobCols([{h:"Affiliate?",cls:"nw",tip:"Mark any job relevant to add it to Affiliate Jobs",td:j=>decCell(j)}]),sort:3,dir:-1});
+  const coCols=[{h:"#",cls:"idx",td:(r,n)=>n},{h:"Company",cls:"pos",td:r=>esc(r.n)+(r._added?' <span class="tag good">Added</span>':""),sort:r=>r.n},{h:"Website",cls:"url",td:r=>`<a href="https://${esc(r.d)}" target="_blank" rel="noopener">${esc(r.d)}</a>`,sort:r=>r.d},
+    {h:"LinkedIn",cls:"url",td:r=>r.li?`<a href="${esc(r.li)}" title="${esc(r.li)}" target="_blank" rel="noopener">${esc(naked(r.li).replace(/^linkedin\.com\/company\//,""))}</a>`:dash},
+    {h:"Career",cls:"url",tip:"Careers page on the company's own site",td:r=>r.cp?`<a href="${esc(r.cp)}" title="${esc(r.cp)}" target="_blank" rel="noopener">${esc(naked(r.cp))}</a>`:dash},
+    {h:"Job Board",cls:"url",tip:"Page where open roles are listed",td:r=>r.jb?`<a href="${esc(r.jb)}" title="${esc(r.jb)}" target="_blank" rel="noopener">${esc(naked(r.jb))}</a>`:dash},
+    {h:"ATS",cls:"nw",tip:"Applicant tracking system behind the job board",td:r=>esc(r.ats)||dash,sort:r=>r.ats},
+    {h:"Open Jobs",cls:"nw",tip:"Jobs fetched from this company's board",td:r=>r.oj??dash,sort:r=>r.oj??-1,desc:true},
+    {h:"Affiliate Jobs",cls:"nw",tip:"Jobs from this company in the Affiliate list",td:r=>{const n=AFF.list.filter(j=>j.d===r.d).length;return n||dash},sort:r=>AFF.list.filter(j=>j.d===r.d).length,desc:true},
+    {h:"Category",cls:"nw",td:r=>r.c?`<span class="tag ${CATCLS[r.c]||""}">${esc(r.c==="Crypto CFD/derivatives broker"?"Crypto CFD":r.c)}</span>`:dash,sort:r=>r.c},
+    {h:"Headcount",cls:"nw",td:r=>esc(r.hc)||dash,sort:r=>r.hcn},{h:"Founded",cls:"nw",td:r=>r.fy||dash,sort:r=>r.fy},
+    {h:"Trading Volume",cls:"wr",td:r=>r.vol?esc(r.vol)+(r.vs?` <a href="${esc(r.vs)}" target="_blank" rel="noopener" title="Source">↗</a>`:""):dash},
+    {h:"Notes",cls:"wr",td:r=>{const x=CREM[r.d];return(x?`<span class="tag bad">Removed by ${esc(x.who)}, ${esc(String(x.timestamp).slice(0,10))}${x.reason?": "+esc(x.reason):""}</span> `:"")+`<span style="font-size:12px;color:var(--muted)">${esc(r.no)}</span>`}},
+    {h:"Action",cls:"nw",tip:"Remove a company that's out of scope, or restore it. Shared with your team and logged.",td:r=>removedCo(r.d)?`<button class="btn" data-act="restore">↺ Restore</button>`:`<button class="btn" data-act="remove">✕ Remove</button>`}];
+  coT=Table(document.getElementById("t-co"),{rows:coRows,search:"Search company, website or ATS",match:(r,q)=>r.n.toLowerCase().includes(q)||r.d.includes(q)||String(r.ats).toLowerCase().includes(q),
+    filters:[{label:"Category",options:()=>[["","Category: any"],["Forex/CFD","Forex/CFD"],["Crypto exchange","Crypto exchange"],["Crypto CFD/derivatives broker","Crypto CFD"],["Prop firm","Prop firm"]],test:(r,v)=>r.c===v},
+      {label:"Job board",options:()=>[["","Job board: any"],["y","Has a job board"],["n","No job board"],["f","Hiring now (jobs fetched)"],["a","Hiring for affiliate roles"]],test:(r,v)=>v==="y"?!!r.jb:v==="n"?!r.jb:v==="f"?(r.oj>0):AFF.list.some(j=>j.d===r.d)}],
+    extra:'<button class="btn primary" data-addco>+ Add company</button>',onAct:(x,a)=>act("company",a.dataset.act,x),
+    noun:"companies",cols:coCols,sort:1,dir:1,csv:r=>["Serial No,Company,Website,LinkedIn,Career,Job Board,ATS,Open Jobs,Category,Headcount,Founded,Trading Volume,Notes"].concat(r.map((x,i)=>[i+1,x.n,"https://"+x.d,x.li,x.cp,x.jb,x.ats,x.oj,x.c,x.hc,x.fy,x.vol,x.no].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(","))).join("\n")});
+  document.getElementById("t-co").addEventListener("click",e=>{if(e.target.closest("[data-addco]"))act("company","add",null)});
+  logT=Table(document.getElementById("t-log"),{rows:logRows,search:"Search person, job, company or reason",match:(r,q)=>[r.who,r.title,r.company,r.reason,r.item_id].join(" ").toLowerCase().includes(q),
+    filters:[{label:"Person",options:()=>[["","Person: anyone"],...CFG.people.map(p=>[p,p])],test:(r,v)=>r.who===v},{label:"Action",options:()=>[["","Action: any"],...Object.entries(ACTL).map(([k,v])=>[k,v[0]])],test:(r,v)=>r.action===v}],
+    noun:"actions",empty:API?"No actions yet. Decisions and company changes will be listed here.":"Shared saving isn't connected yet, so there's no activity to show.",
+    onRow:r=>{if(r.entity==="job"){const x=JOBS.find(y=>y.id===r.item_id);if(x)openDrawer(x)}},
+    cols:[{h:"#",cls:"idx",td:r=>r._n},{h:"When",cls:"nw",td:r=>esc(String(r.timestamp).replace("T"," ").slice(0,16))+" UTC",sort:r=>r.timestamp,desc:true},{h:"Who",cls:"nw",td:r=>esc(r.who),sort:r=>r.who},
+      {h:"Action",cls:"nw",td:r=>`<span class="tag ${(ACTL[r.action]||["",""])[1]}">${esc((ACTL[r.action]||[r.action])[0])}</span>`,sort:r=>r.action},
+      {h:"Item",cls:"pos",tip:"The job or company the action was taken on",td:r=>esc(r.entity==="job"?r.title:r.company)+`<div class="by">${r.entity==="job"?"Job":"Company"} · ${esc(r.item_id)}</div>`},
+      {h:"Company",cls:"wr",td:r=>esc(r.company),sort:r=>r.company},{h:"Reason",cls:"wr",td:r=>esc(r.reason)||dash},
+      {h:"Link",cls:"url",td:r=>r.url?`<a href="${esc(r.url)}" title="${esc(r.url)}" target="_blank" rel="noopener">${esc(naked(r.url))}</a>`:dash}],sort:1,dir:-1});
+  refreshAll();route();
+}
+function route(){const V=["overview","affiliate","jobs","companies","activity","about"];const v=(location.hash||"#overview").slice(1);const ok=V.includes(v)?v:"overview";
+  V.forEach(x=>document.getElementById("v-"+x).hidden=x!==ok);
+  document.querySelectorAll(".tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===ok?"page":"false"));scrollTo(0,0)}
+addEventListener("hashchange",route);
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+[
+{
+"d": "kucoin.com",
+"kind": "moka",
+"code": "kcareers|100000192",
+"jb": "https://hire-r1.mokahr.com/social-recruitment/kcareers/100000192"
+},
+{
+"d": "bitget.com",
+"kind": "moka",
+"code": "bitget|100000079",
+"jb": "https://hire-r1.mokahr.com/social-recruitment/bitget/100000079"
+},
+{
+"d": "bingx.com",
+"kind": "moka",
+"code": "bingx|100008641",
+"jb": "https://hire-r1.mokahr.com/social-recruitment/bingx/100008641"
+},
+{
+"d": "apextraderfunding.com",
+"kind": "rippling",
+"code": "apextraderfunding",
+"jb": "https://ats.rippling.com/apextraderfunding/jobs"
+},
+{
+"d": "valr.com",
+"kind": "hibob",
+"code": "valr",
+"jb": "https://valr.careers.hibob.com/"
+},
+{
+"d": "vtmarkets.com",
+"kind": "hibob",
+"code": "vt-markets",
+"jb": "https://vt-markets.careers.hibob.com/"
+},
+{
+"d": "bitbank.cc",
+"kind": "hrmos",
+"code": "bitbank",
+"jb": "https://hrmos.co/pages/bitbank/jobs"
+},
+{
+"d": "spreadex.com",
+"kind": "teamtailor",
+"code": "spreadex",
+"jb": "https://careers.spreadex.com/"
+},
+{
+"d": "fundednext.com",
+"kind": "recruitee_host",
+"code": "nextventures",
+"jb": "https://career.nextventures.io/"
+},
+{
+"d": "naga.com",
+"kind": "peopleforce",
+"code": "nagateam",
+"jb": "https://nagateam.peopleforce.io/careers"
+},
+{
+"d": "weltrade.com",
+"kind": "peopleforce",
+"code": "weltrade",
+"jb": "https://weltrade.peopleforce.io/careers"
+},
+{
+"d": "currency.com",
+"kind": "peopleforce",
+"code": "cx-labs",
+"jb": "https://cx-labs.peopleforce.io/careers"
+},
+{
+"d": "coincheck.com",
+"kind": "herp",
+"code": "coincheckinc",
+"jb": "https://herp.careers/v1/coincheckinc"
+}
+]
