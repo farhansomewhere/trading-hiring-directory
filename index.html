@@ -126,6 +126,29 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:40;font-size:13px;box-shadow:var(--shadow)}
 .notice{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:13px}
 
+/* Overview */
+.ov{display:grid;gap:14px}
+.ovh{font-family:var(--display);font-size:17px;margin:8px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.kpi{display:grid;gap:2px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--fg)}
+.kpi:hover{border-color:var(--accent)}
+.kpi b{font-family:var(--display);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi em{font-style:normal;font-size:12px;color:var(--accent)}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 10px;font-size:14px}
+.bars{display:grid;gap:4px}
+.bar{display:grid;grid-template-columns:minmax(0,13ch) 1fr 3ch;gap:10px;align-items:center;background:none;border:0;padding:3px 0;cursor:pointer;text-align:left}
+.bar:hover .bf{filter:brightness(1.1)}
+.bar .bl{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .bt{height:12px;background:var(--bg);border-radius:0 4px 4px 0;overflow:hidden}
+.bar .bf{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
+.bar .bv{font-size:12.5px;font-variant-numeric:tabular-nums;text-align:right;color:var(--fg)}
+.newest{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.newest li{display:grid;gap:1px}
+.newest span{font-size:12px;color:var(--muted)}
+.lnk{background:none;border:0;padding:0;color:var(--accent);text-align:left;cursor:pointer;font-weight:600}
 /* About */
 .about{max-width:900px;display:grid;gap:18px}
 .about h2{font-family:var(--display);font-size:20px;margin:0}
@@ -141,15 +164,18 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
 <div class="wrap">
   <header class="top">
     <h1>Trading Hiring Directory</h1>
-    <span class="updated">Jobs fetched 09 Nov 2026 from each company's own job board</span>
+    <span class="updated" title="Data source">Jobs fetched 09 Nov 2026 from each company's own job board</span>
   </header>
   <nav class="tabs" aria-label="Sections">
+    <a href="#overview" data-v="overview">Overview</a>
     <a href="#affiliate" data-v="affiliate">Affiliate Jobs <span class="n" id="n-aff"></span></a>
     <a href="#jobs" data-v="jobs">All Jobs <span class="n" id="n-jobs"></span></a>
     <a href="#companies" data-v="companies">Companies <span class="n" id="n-co"></span></a>
+    <a href="#activity" data-v="activity">Activity <span class="n" id="n-log"></span></a>
     <a href="#about" data-v="about">About</a>
   </nav>
 
+  <section id="v-overview" class="view" hidden><div id="ov" class="ov"></div></section>
   <section id="v-affiliate" class="view" hidden>
     <p class="lede">Affiliate, partnership and IB roles. Mark each job <b>Relevant</b> or <b>Not relevant</b>: your decisions are shared with everyone on this page and teach the matching, so <b>Suggested</b> gets better over time.</p>
     <div class="subtabs" role="tablist" id="affsub"></div>
@@ -157,14 +183,15 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
     <div id="t-aff"></div>
   </section>
   <section id="v-jobs" class="view" hidden><div id="t-jobs"></div></section>
-  <section id="v-companies" class="view" hidden><div id="t-co"></div></section>
+  <section id="v-companies" class="view" hidden><div class="subtabs" role="tablist" id="cosub"></div><div id="co-notice"></div><div id="t-co"></div></section>
+  <section id="v-activity" class="view" hidden><p class="lede">Every change your team makes: who did it, what, to which job or company, when, and why. The same log is kept in the shared Google Sheet.</p><div id="log-notice"></div><div id="t-log"></div></section>
   <section id="v-about" class="view about" hidden>
 <div><h2>How Affiliate Jobs are found</h2><p>Every job on 112 company job boards is checked. A job enters the Affiliate list when its title matches one of these patterns, unless a reject rule drops it. Your team's Relevant / Not relevant decisions then override the rules and train the Suggested list.</p></div>
 <table><tbody>
 <tr><td>Title patterns</td><td><ul style="margin:0;padding-left:18px"><li><b>Affiliate</b></li><li><b>Partnerships</b></li><li><b>Partner Manager</b></li><li><b>Partner Growth</b></li><li><b>Partner Marketing</b></li><li><b>Partner Acquisition</b></li><li><b>IB / Introducing Broker</b></li><li><b>Referral / Ambassador</b></li><li><b>Channel Partner</b></li></ul><p style="margin-top:6px">Matching is case-insensitive. "Partner" counts only in phrases like Partner Manager, Partner Growth, Partner Marketing or Partner Acquisition, so HR/Finance "Business Partner" roles are not matched.</p></td></tr>
 <tr><td>Reject words (title)</td><td>German, French, Spanish, Italian, Dutch, Portuguese, Arabic, Turkish, Polish, Swedish, Danish, Norwegian, Finnish, Russian, Greek, Czech, Hungarian, Romanian, Hebrew, Japanese, Korean, Chinese, Mandarin, Vietnamese, Thai, Indonesian; Influencer, Creator, UGC, Social Commerce, TikTok, TikTok Shop, Live Shopping, Instructor, Professor, Faculty, Lecturer, Provider, Clinical, Medical, Nurse, Therapist, Counsellor, Counselor</td></tr>
 <tr><td>Non-English postings</td><td>Rejected when the description is clearly not written in English.</td></tr>
-<tr><td>Team decisions</td><td>✓ Relevant adds a job to the list; ✕ Not relevant removes it. Decisions are shared with everyone and override the rules. Click a pressed button again to clear it.</td></tr>
+<tr><td>Team decisions</td><td>✓ Relevant adds a job to the list; ✕ Not relevant removes it. Companies can be added or removed on the Companies tab; a removed company's jobs leave every list. All decisions are shared, override the rules, and are recorded in the Activity log (who, what, which item, when, why). Click a pressed button again to clear it.</td></tr>
 <tr><td>Learning</td><td>A small model scores every job from its title words and description signals (e.g. IB, introducing broker, CPA, revenue share, affiliate network), trained on your decisions. Jobs it rates 70%+ that aren't in the list appear under Suggested, with the words that drove the score. The title rules are also reviewed against your decisions when the site is refreshed.</td></tr>
 </tbody></table>
 <div><h2>Data rules</h2></div>
@@ -194,9 +221,16 @@ Call log:
 
 <dialog id="dlg"><form method="dialog" id="dlg-form">
   <h3 id="dlg-h">Mark as relevant</h3>
+  <div id="dlg-co" hidden style="display:grid;gap:12px">
+    <label>Company name<input id="dlg-cname" autocomplete="off"></label>
+    <label>Website<input id="dlg-cweb" placeholder="example.com" autocomplete="off"></label>
+    <label>Category<select id="dlg-ccat"><option>Forex/CFD</option><option>Crypto exchange</option><option>Crypto CFD/derivatives broker</option><option>Prop firm</option></select></label>
+    <label>Job board link (optional)<input id="dlg-cjb" autocomplete="off"></label>
+    <label>LinkedIn (optional)<input id="dlg-cli" autocomplete="off"></label>
+  </div>
   <label>Your name<select id="dlg-who" required></select></label>
   <label id="dlg-pass-l">Team passcode<input id="dlg-pass" type="password" autocomplete="off" required></label>
-  <label>Reason (optional, helps the matching learn)<textarea id="dlg-reason" rows="3" placeholder="e.g. IB acquisition role; or: payments partnership, not affiliate"></textarea></label>
+  <label>Reason (optional, helps the matching learn and is kept in the log)<textarea id="dlg-reason" rows="3" placeholder="e.g. IB acquisition role; or: payments partnership, not affiliate"></textarea></label>
   <div class="row"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn primary" value="ok" id="dlg-ok">Save</button></div>
 </form></dialog>
 <div class="toast" id="toast" hidden></div>
@@ -214,66 +248,85 @@ const fmtAmt=j=>{if(j.sraw)return j.sraw;const f=x=>x==null?"":Number(x).toLocal
 const ctry=j=>j.cc.map(c=>CN[c]||c).join(", ");
 const dash='<span class="dash">—</span>';
 
-/* ---------------- shared decisions + learning ---------------- */
-let DEC={};            // job id -> {decision, who, reason, ts}
-let MODEL=null;        // naive Bayes token weights
+/* ---------------- shared activity log, decisions + learning ---------------- */
+let LOG=[];            // every action, oldest first
+let DEC={};            // job id -> latest decision row
+let CREM={};           // company domain -> latest remove row (if removed)
+let CADD={};           // added companies: domain -> add row
+let MODEL=null;
 const API=CFG.api;const REJ=new RegExp("\\b("+CFG.rej.join("|")+")\\b","i");
-async function loadDecisions(){
-  if(!API){return}
-  try{const r=await fetch(API,{redirect:"follow"});const j=await r.json();DEC={};(j.decisions||[]).forEach(d=>{if(d.decision==="clear")delete DEC[d.job_id];else DEC[d.job_id]=d});}
-  catch(_){document.getElementById("aff-notice").innerHTML='<div class="notice">Could not load shared decisions right now. The list below uses the matching rules only. Reload to try again.</div>'}
+function applyLog(){DEC={};CREM={};CADD={};
+  LOG.forEach(r=>{if(r.entity==="job"){if(r.action==="clear")delete DEC[r.item_id];else DEC[r.item_id]=r}
+    else if(r.entity==="company"){if(r.action==="remove")CREM[r.item_id]=r;else if(r.action==="restore")delete CREM[r.item_id];else if(r.action==="add"){CADD[r.item_id]=r;delete CREM[r.item_id]}}});
+  // added companies become directory rows (data to be filled on the next refresh)
+  for(let i=DATA.length-1;i>=0;i--)if(DATA[i]._added)DATA.splice(i,1);
+  Object.values(CADD).forEach(r=>{if(DATA.some(x=>x.d===r.item_id))return;let det={};try{det=JSON.parse(r.details||"{}")}catch(_){}
+    DATA.push({_added:true,n:r.company||r.item_id,d:r.item_id,c:det.category||"",li:det.linkedin||"",cp:"",jb:det.job_board||"",ats:"",hc:"",fy:null,vol:"",no:`Added by ${r.who} on ${String(r.timestamp).slice(0,10)}${r.reason?": "+r.reason:""}. Job board and details will be filled on the next data refresh.`})});
 }
+async function loadLog(){
+  if(!API)return;
+  try{const r=await fetch(API,{redirect:"follow"});const j=await r.json();LOG=(j.log||[]).map(x=>({...x,item_id:String(x.item_id)}));applyLog()}
+  catch(_){document.getElementById("aff-notice").innerHTML='<div class="notice">Could not load shared decisions right now; showing the matching rules only. Reload to try again.</div>'}
+}
+const removedCo=d=>!!CREM[d];
 const tok=t=>String(t||"").toLowerCase().replace(/[^\p{L}\p{N}&+ ]+/gu," ").split(/\s+/).filter(w=>w.length>1&&!STOP.has(w));
 const STOP=new Set("the and of for to in a an at with on senior junior lead head manager specialist executive associate director officer remote hybrid".split(" "));
 function feats(j){const cw=new Set(tok(j.c).concat(["program","programme","accelerator"]));const t=tok(j.t).filter(w=>!cw.has(w));const f=t.map(w=>"t:"+w);for(let i=0;i<t.length-1;i++)f.push("b:"+t[i]+"_"+t[i+1]);(j.kw||[]).forEach(k=>f.push("k:"+k));if(j.am)f.push("rule:"+j.am);return f}
 function train(){
-  // labels: human decisions (weight 1); rule matches without decision (weak positive 0.25); everything else weak negative 0.02
-  const pos={},neg={};let P=0,N=0;
-  const add=(o,fs,w)=>fs.forEach(x=>o[x]=(o[x]||0)+w);
+  // labels: team decisions (weight 1); rule matches without a decision (weak positive 0.25); everything else weak negative 0.02
+  const pos={},neg={};let P=0,N=0;const add=(o,fs,w)=>fs.forEach(x=>o[x]=(o[x]||0)+w);
   JOBS.forEach(j=>{const d=DEC[j.id];const fs=feats(j);
-    if(d){if(d.decision==="relevant"){add(pos,fs,1);P+=1}else{add(neg,fs,1);N+=1}}
+    if(d){if(d.action==="relevant"){add(pos,fs,1);P+=1}else{add(neg,fs,1);N+=1}}
     else if(j.aff&&!j.rej){add(pos,fs,.25);P+=.25}else{add(neg,fs,.02);N+=.02}});
   const V=new Set([...Object.keys(pos),...Object.keys(neg)]);const sp=Object.values(pos).reduce((a,b)=>a+b,0),sn=Object.values(neg).reduce((a,b)=>a+b,0);
   const w={};V.forEach(x=>w[x]=Math.log(((pos[x]||0)+.1)/(sp+.1*V.size))-Math.log(((neg[x]||0)+.1)/(sn+.1*V.size)));
   MODEL={w,prior:Math.log(P/N)};
 }
-function score(j){if(!MODEL)return 0;let s=MODEL.prior;const fs=feats(j);fs.forEach(x=>s+=MODEL.w[x]||0);return 1/(1+Math.exp(-s))}
+function score(j){if(!MODEL)return 0;let s=MODEL.prior;feats(j).forEach(x=>s+=MODEL.w[x]||0);return 1/(1+Math.exp(-s))}
 function why(j){if(!MODEL)return"";return feats(j).map(x=>[x,MODEL.w[x]||0]).filter(a=>a[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(a=>a[0].replace(/^[tbk]:|^rule:/,"").replace("_"," ")).join(", ")}
-function inList(j){const d=DEC[j.id];if(d)return d.decision==="relevant";return j.aff&&!j.rej}
+function inList(j){const d=DEC[j.id];if(d)return d.action==="relevant";return j.aff&&!j.rej}
 function computeAff(){
   train();JOBS.forEach(j=>j.sc_=score(j));
   const L={list:[],sugg:[],removed:[],rejected:[]};
-  JOBS.forEach(j=>{const d=DEC[j.id];
+  JOBS.forEach(j=>{if(removedCo(j.d))return;const d=DEC[j.id];
     if(inList(j))L.list.push(j);
-    else if(d&&d.decision==="not_relevant")L.removed.push(j);
+    else if(d&&d.action==="not_relevant")L.removed.push(j);
     else if(j.aff&&j.rej)L.rejected.push(j);
     else if(j.sc_>=CFG.th&&!REJ.test(j.t))L.sugg.push(j)});
-  L.sugg.sort((a,b)=>b.sc_-a.sc_);
-  return L;
+  L.sugg.sort((a,b)=>b.sc_-a.sc_);return L;
 }
 
-/* ---------------- decision UI ---------------- */
+/* ---------------- saving actions ---------------- */
 const dlg=document.getElementById("dlg");
 document.getElementById("dlg-who").innerHTML=CFG.people.map(p=>`<option>${esc(p)}</option>`).join("");
-function decide(j,decision){
-  if(!API){toast("Saving isn't connected yet. Add the Google Sheet web app address first.");return}
+const LABEL={relevant:"Mark job as relevant",not_relevant:"Mark job as not relevant",clear:"Clear decision",remove:"Remove company",restore:"Restore company",add:"Add a company"};
+function act(entity,action,item,onDone){
+  if(!API){toast("Saving isn't connected yet. The Google Sheet web app address needs to be added first.");return}
   const who=store.get("who",""),pass=store.get("pass","");
-  document.getElementById("dlg-h").textContent=decision==="relevant"?"Mark as relevant":decision==="not_relevant"?"Mark as not relevant":"Clear decision";
+  document.getElementById("dlg-h").textContent=LABEL[action];
+  document.getElementById("dlg-co").hidden=action!=="add";
+  ["dlg-cname","dlg-cweb"].forEach(id=>document.getElementById(id).required=action==="add");
   document.getElementById("dlg-who").value=who||CFG.people[0];
   document.getElementById("dlg-pass").value=pass;document.getElementById("dlg-pass-l").hidden=!!pass;
   document.getElementById("dlg-reason").value="";
+  document.getElementById("dlg-reason").placeholder=entity==="company"?"e.g. not a broker / out of scope; or: hires IB managers in LATAM":"e.g. IB acquisition role; or: payments partnership, not affiliate";
   dlg.onclose=async()=>{if(dlg.returnValue!=="ok")return;
-    const body={passcode:document.getElementById("dlg-pass").value,job_id:j.id,decision,who:document.getElementById("dlg-who").value,reason:document.getElementById("dlg-reason").value,title:j.t,company:j.c,url:j.u};
+    let body={passcode:document.getElementById("dlg-pass").value,entity,action,who:document.getElementById("dlg-who").value,reason:document.getElementById("dlg-reason").value};
+    if(entity==="job")body={...body,item_id:item.id,title:item.t,company:item.c,url:item.u,details:{row:item._row||"",posted:item.p,board:item.via}};
+    else if(action==="add"){const web=document.getElementById("dlg-cweb").value.trim().replace(/^https?:\/\/(www\.)?/,"").replace(/\/.*$/,"").toLowerCase();
+      body={...body,item_id:web,title:"",company:document.getElementById("dlg-cname").value.trim(),url:"https://"+web,details:{category:document.getElementById("dlg-ccat").value,job_board:document.getElementById("dlg-cjb").value.trim(),linkedin:document.getElementById("dlg-cli").value.trim()}}}
+    else body={...body,item_id:item.d,title:"",company:item.n,url:"https://"+item.d,details:{job_board:item.jb||"",category:item.c||""}};
     try{const r=await fetch(API,{method:"POST",body:JSON.stringify(body),headers:{"Content-Type":"text/plain;charset=utf-8"},redirect:"follow"});const res=await r.json();
       if(!res.ok){toast(res.error==="Wrong passcode"?"Wrong passcode. Check it and try again.":"Not saved: "+res.error);if(res.error==="Wrong passcode")store.set("pass","");return}
       store.set("who",body.who);store.set("pass",body.passcode);
-      if(decision==="clear")delete DEC[j.id];else DEC[j.id]={job_id:j.id,decision,who:body.who,reason:body.reason,timestamp:new Date().toISOString()};
-      toast(decision==="relevant"?"Saved as relevant":decision==="not_relevant"?"Saved as not relevant":"Decision cleared");refreshAff();if(!document.getElementById("drawer").hidden)openDrawer(j)}
+      LOG.push({timestamp:new Date().toISOString(),entity,item_id:String(body.item_id),action,who:body.who,reason:body.reason,title:body.title,company:body.company,url:body.url,details:JSON.stringify(body.details||{})});
+      applyLog();toast("Saved: "+LABEL[action].toLowerCase());refreshAll();if(onDone)onDone()}
     catch(_){toast("Not saved: could not reach the Google Sheet. Try again.")}};
   dlg.showModal();
 }
-function decCell(j){const d=DEC[j.id];const r=d&&d.decision==="relevant",n=d&&d.decision==="not_relevant";
-  return `<div class="dec"><button class="btn yes" data-act="relevant" aria-pressed="${!!r}" title="Relevant">✓ Relevant</button><button class="btn no" data-act="not_relevant" aria-pressed="${!!n}" title="Not relevant">✕ Not</button></div>`+(d?`<div class="by">${esc(d.who)}${d.reason?": "+esc(d.reason):""}</div>`:"")}
+const decideJob=(j,a)=>act("job",a,j,()=>{if(!document.getElementById("drawer").hidden)openDrawer(j)});
+function decCell(j){const d=DEC[j.id];const r=d&&d.action==="relevant",n=d&&d.action==="not_relevant";
+  return `<div class="dec"><button class="btn yes" data-act="relevant" aria-pressed="${!!r}" title="Relevant: add to the affiliate list">✓ Relevant</button><button class="btn no" data-act="not_relevant" aria-pressed="${!!n}" title="Not relevant: remove from the affiliate list">✕ Not</button></div>`+(d?`<div class="by">${esc(d.who)}, ${esc(String(d.timestamp).slice(0,10))}${d.reason?": "+esc(d.reason):""}</div>`:"")}
 
 /* ---------------- generic paginated table ---------------- */
 function Table(host,opt){
@@ -301,8 +354,8 @@ function Table(host,opt){
     if(e.target.closest("[data-clear]")){st.q="";st.f={};host.querySelectorAll("select[data-f]").forEach(s=>s.value="");const i=host.querySelector("input[type=search]");if(i)i.value="";st.page=1;render();return}
     if(e.target.closest("[data-csv]")&&opt.csv){const t=opt.csv(host._cur);try{await navigator.clipboard.writeText(t);toast(`Copied ${host._cur.length} rows`)}catch(_){toast("Copy was blocked by the browser")}return}
     const chip=e.target.closest("[data-chip]");if(chip&&opt.onChip){opt.onChip(chip);st.page=1;render();return}
-    const act=e.target.closest("[data-act]");const tr=e.target.closest("tr[data-i]");if(!tr)return;const x=host._cur[+tr.dataset.i];
-    if(act){e.stopPropagation();decide(x,act.getAttribute("aria-pressed")==="true"?"clear":act.dataset.act);return}
+    const ab=e.target.closest("[data-act]");const tr=e.target.closest("tr[data-i]");if(!tr)return;const x=host._cur[+tr.dataset.i];
+    if(ab){e.stopPropagation();if(opt.onAct)opt.onAct(x,act);return}
     if(e.target.closest("a"))return;if(opt.onRow)opt.onRow(x)});
   render();return{render,st}
 }
@@ -343,50 +396,98 @@ async function openDrawer(j){lastFocus=document.activeElement;const dr=document.
   const ds=document.getElementById("dr-desc");ds.textContent="Loading…";
   dr.hidden=false;document.getElementById("scrim").hidden=false;document.getElementById("dr-close").focus();
   try{const t=(await chunk(j.k))[j.id];ds.textContent=t||"The job board gave no description."}catch(_){ds.textContent="Could not load the description. Reload the page and try again."}
-  document.getElementById("dr-actions").onclick=e=>{const a=e.target.closest("[data-act]");if(a)decide(j,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act)}}
+  document.getElementById("dr-actions").onclick=e=>{const a=e.target.closest("[data-act]");if(a)decideJob(j,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act)}}
 function closeDrawer(){document.getElementById("drawer").hidden=true;document.getElementById("scrim").hidden=true;if(lastFocus)lastFocus.focus()}
 document.getElementById("dr-close").onclick=closeDrawer;document.getElementById("scrim").onclick=closeDrawer;
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!document.getElementById("drawer").hidden)closeDrawer()});
 
 /* ---------------- views ---------------- */
-let AFF=null,affView=store.get("affView","list"),affT=null;
-const AFFV=[["list","Affiliate Jobs","Matched by the rules or marked relevant, minus anything marked not relevant"],["sugg","Suggested","Jobs the learning model thinks are relevant but aren't in the list yet. Confirm or reject them."],["removed","Removed","Marked not relevant by your team"],["rejected","Rule-rejected","Matched an affiliate title but dropped by the reject words (languages, influencer, medical, etc.) or a non-English posting"]];
-function refreshAff(){AFF=computeAff();
-  document.getElementById("n-aff").textContent=AFF.list.length;
-  document.getElementById("affsub").innerHTML=AFFV.map(v=>`<button role="tab" data-av="${v[0]}" aria-selected="${v[0]===affView}" title="${esc(v[2])}">${v[1]}<span class="n">${AFF[v[0]].length}</span></button>`).join("");
-  if(affT)affT.render()}
-document.getElementById("affsub").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;affView=b.dataset.av;store.set("affView",affView);refreshAff()});
+let AFF=null,affView=store.get("affView","list"),affT=null,jobsT=null,coT=null,logT=null,coView="active";
+const AFFV=[["list","Affiliate Jobs","Matched by the rules or marked relevant, minus anything marked not relevant"],["sugg","Suggested","Jobs the learning model rates as likely affiliate roles that aren't in the list yet. Confirm or reject them."],["removed","Removed","Marked not relevant by your team"],["rejected","Rule-rejected","Matched an affiliate title but dropped by the reject words (languages, influencer, medical, etc.) or a non-English posting"]];
 const matchJob=(j,q)=>j.t.toLowerCase().includes(q)||j.c.toLowerCase().includes(q);
+const coRows=()=>DATA.filter(r=>coView==="removed"?removedCo(r.d):!removedCo(r.d));
+function refreshAll(){AFF=computeAff();
+  const jc={};JOBS.forEach(j=>j.d&&(jc[j.d]=(jc[j.d]||0)+1));DATA.forEach(r=>r.oj=jc[r.d]||(STATUS[r.d]&&STATUS[r.d].state==="fetched"?0:null));
+  document.getElementById("n-aff").textContent=AFF.list.length;document.getElementById("n-jobs").textContent=JOBS.filter(j=>!removedCo(j.d)).length.toLocaleString();
+  document.getElementById("n-co").textContent=DATA.filter(r=>!removedCo(r.d)).length;document.getElementById("n-log").textContent=LOG.length;
+  document.getElementById("affsub").innerHTML=AFFV.map(v=>`<button role="tab" data-av="${v[0]}" aria-selected="${v[0]===affView}" title="${esc(v[2])}">${v[1]}<span class="n">${AFF[v[0]].length}</span></button>`).join("");
+  document.getElementById("cosub").innerHTML=[["active","Companies",DATA.filter(r=>!removedCo(r.d)).length],["removed","Removed",DATA.filter(r=>removedCo(r.d)).length]].map(v=>`<button role="tab" data-cv="${v[0]}" aria-selected="${v[0]===coView}">${v[1]}<span class="n">${v[2]}</span></button>`).join("");
+  renderOverview();[affT,jobsT,coT,logT].forEach(t=>t&&t.render())}
+document.getElementById("affsub").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;affView=b.dataset.av;store.set("affView",affView);refreshAll()});
+document.getElementById("cosub").addEventListener("click",e=>{const b=e.target.closest("[data-cv]");if(!b)return;coView=b.dataset.cv;refreshAll()});
+
+/* ---------------- overview ---------------- */
+function bars(rows,go){const max=Math.max(1,...rows.map(r=>r[1]));
+  return rows.length?`<div class="bars">${rows.map(r=>`<button class="bar" data-go="${esc(go(r[0]))}" title="${esc(r[0])}: ${r[1]}"><span class="bl">${esc(r[0])}</span><span class="bt"><span class="bf" style="width:${Math.max(2,r[1]/max*100)}%"></span></span><span class="bv">${r[1]}</span></button>`).join("")}</div>`:'<p class="dash">None yet</p>'}
+const topN=(arr,key,n)=>{const c={};arr.forEach(x=>[].concat(key(x)).forEach(k=>{if(k)c[k]=(c[k]||0)+1}));return Object.entries(c).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,n)};
+function renderOverview(){
+  const co=DATA.filter(r=>!removedCo(r.d)),jobs=JOBS.filter(j=>!removedCo(j.d)),aff=AFF.list;
+  const withJB=co.filter(r=>r.jb).length,fetched=co.filter(r=>STATUS[r.d]&&STATUS[r.d].state==="fetched").length;
+  const hiring=new Set(jobs.map(j=>j.d)),affCo=new Set(aff.map(j=>j.d));
+  const recent=aff.filter(j=>j.p&&daysAgo(j.p)<=7).length,recent30=aff.filter(j=>j.p&&daysAgo(j.p)<=30).length;
+  const remote=aff.filter(j=>j.ws==="Remote").length,visa=aff.filter(j=>j.wa==="Visa & Relocation Support").length,paid=aff.filter(j=>j.smin||j.smax||j.sraw).length;
+  const decided=Object.keys(DEC).length,toReview=AFF.sugg.length;
+  const tile=(n,l,go,sub)=>`<a class="kpi" href="${go}"><b>${typeof n==="number"?n.toLocaleString():n}</b><span>${l}</span>${sub?`<em>${sub}</em>`:""}</a>`;
+  document.getElementById("ov").innerHTML=`
+  <h2 class="ovh">Affiliate opportunities</h2>
+  <div class="kpis">${tile(aff.length,"Affiliate jobs open now","#affiliate")}${tile(affCo.size,"Companies hiring for affiliate roles","#affiliate")}${tile(recent,"New affiliate jobs, last 7 days","#affiliate",recent30+" in the last 30 days")}${tile(remote,"Remote affiliate jobs","#affiliate")}${tile(visa,"Affiliate jobs offering visa / relocation","#affiliate")}${tile(paid,"Affiliate jobs with a salary posted","#affiliate")}</div>
+  <h2 class="ovh">Your team's review</h2>
+  <div class="kpis">${tile(toReview,"Suggested jobs waiting for review","#affiliate",'Open Affiliate Jobs › Suggested')}${tile(decided,"Jobs your team has decided on","#activity")}${tile(Object.keys(CREM).length,"Companies removed","#companies")}${tile(Object.keys(CADD).length,"Companies added","#companies")}${tile(LOG.length,"Actions in the activity log","#activity")}</div>
+  <h2 class="ovh">Market</h2>
+  <div class="kpis">${tile(co.length,"Total companies","#companies")}${tile(withJB,"Companies with a job board","#companies")}${tile(co.length-withJB,"Companies without a job board","#companies")}${tile(hiring.size,"Companies hiring right now","#jobs",fetched+" job boards read")}${tile(jobs.length,"Total open jobs","#jobs")}</div>
+  <div class="ovgrid">
+    <div class="card"><h3>Companies with the most affiliate jobs</h3>${bars(topN(aff,j=>j.c,8),k=>"#affiliate")}</div>
+    <div class="card"><h3>Affiliate jobs by country</h3>${bars(topN(aff,j=>j.cc.length?j.cc.map(c=>CN[c]||c):["Not stated"],8),k=>"#affiliate")}</div>
+    <div class="card"><h3>Newest affiliate jobs</h3><ul class="newest">${[...aff].sort((a,b)=>String(b.p).localeCompare(String(a.p))).slice(0,6).map(j=>`<li><button class="lnk" data-job="${j.id}">${esc(j.t)}</button><span>${esc(j.c)} · ${j.p||"no date"}</span></li>`).join("")||'<li class="dash">None yet</li>'}</ul></div>
+    <div class="card"><h3>Companies hiring the most (all roles)</h3>${bars(topN(jobs,j=>j.c,8),k=>"#jobs")}</div>
+  </div>`;
+}
+document.getElementById("ov").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){location.hash=b.dataset.go;return}const j=e.target.closest("[data-job]");if(j){const x=JOBS.find(y=>y.id===j.dataset.job);if(x)openDrawer(x)}});
+
+/* ---------------- activity log ---------------- */
+const ACTL={relevant:["Marked job relevant","good"],not_relevant:["Marked job not relevant","bad"],clear:["Cleared job decision","muted"],add:["Added company","good"],remove:["Removed company","bad"],restore:["Restored company","muted"]};
+function logRows(){return[...LOG].reverse().map((r,i)=>({...r,_n:LOG.length-i}))}
 
 async function init(){
-  document.getElementById("n-jobs").textContent=JOBS.length.toLocaleString();document.getElementById("n-co").textContent=DATA.length;
-  if(!API)document.getElementById("aff-notice").innerHTML='<div class="notice">Shared saving isn\'t connected yet, so Relevant / Not relevant buttons won\'t save. The list uses the matching rules.</div>';
-  await loadDecisions();refreshAff();
-  affT=Table(document.getElementById("t-aff"),{rows:()=>AFF[affView],search:"Search position or company",match:matchJob,filters:jobFilters(),noun:"jobs",csv:csvJobs,onRow:openDrawer,
-    cols:jobCols([{h:"Why matched",cls:"wr",tip:"The title rule that matched, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.decision==="relevant"?"good":"bad"}">${d.decision==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
-      {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)}]),
-    sort:3,dir:-1,empty:"No jobs here yet."});
-  Table(document.getElementById("t-jobs"),{rows:()=>JOBS,search:"Search position or company",match:matchJob,filters:[{label:"Company",options:()=>[["","Company: any"],...[...new Set(JOBS.map(j=>j.c))].sort().map(c=>[c,c])],test:(j,v)=>j.c===v},...jobFilters()],noun:"jobs",csv:csvJobs,onRow:openDrawer,cols:jobCols(),sort:3,dir:-1});
-  const coCols=[{h:"#",cls:"idx",td:(r,n)=>n},{h:"Company",cls:"pos",td:r=>esc(r.n),sort:r=>r.n},{h:"Website",cls:"url",td:r=>`<a href="https://${esc(r.d)}" target="_blank" rel="noopener">${esc(r.d)}</a>`,sort:r=>r.d},
-    {h:"LinkedIn",cls:"url",td:r=>r.li?`<a href="${esc(r.li)}" target="_blank" rel="noopener">${esc(naked(r.li).replace(/^linkedin\.com\/company\//,""))}</a>`:dash},
+  if(!API){const n='<div class="notice">Shared saving isn\'t connected yet, so Relevant / Not relevant and company add / remove won\'t save. Lists use the matching rules.</div>';document.getElementById("aff-notice").innerHTML=n;document.getElementById("co-notice").innerHTML=n;document.getElementById("log-notice").innerHTML=n}
+  await loadLog();AFF=computeAff();
+  affT=Table(document.getElementById("t-aff"),{rows:()=>AFF[affView],search:"Search position or company",match:matchJob,filters:jobFilters(),noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
+    cols:jobCols([{h:"Why matched",cls:"wr",tip:"The title rule that matched, your team's decision, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.action==="relevant"?"good":"bad"}">${d.action==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
+      {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)}]),sort:3,dir:-1,empty:"No jobs here yet."});
+  jobsT=Table(document.getElementById("t-jobs"),{rows:()=>JOBS.filter(j=>!removedCo(j.d)),search:"Search position or company",match:matchJob,filters:[{label:"Company",options:()=>[["","Company: any"],...[...new Set(JOBS.map(j=>j.c))].sort().map(c=>[c,c])],test:(j,v)=>j.c===v},...jobFilters()],noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
+    cols:jobCols([{h:"Affiliate?",cls:"nw",tip:"Mark any job relevant to add it to Affiliate Jobs",td:j=>decCell(j)}]),sort:3,dir:-1});
+  const coCols=[{h:"#",cls:"idx",td:(r,n)=>n},{h:"Company",cls:"pos",td:r=>esc(r.n)+(r._added?' <span class="tag good">Added</span>':""),sort:r=>r.n},{h:"Website",cls:"url",td:r=>`<a href="https://${esc(r.d)}" target="_blank" rel="noopener">${esc(r.d)}</a>`,sort:r=>r.d},
+    {h:"LinkedIn",cls:"url",td:r=>r.li?`<a href="${esc(r.li)}" title="${esc(r.li)}" target="_blank" rel="noopener">${esc(naked(r.li).replace(/^linkedin\.com\/company\//,""))}</a>`:dash},
     {h:"Career",cls:"url",tip:"Careers page on the company's own site",td:r=>r.cp?`<a href="${esc(r.cp)}" title="${esc(r.cp)}" target="_blank" rel="noopener">${esc(naked(r.cp))}</a>`:dash},
     {h:"Job Board",cls:"url",tip:"Page where open roles are listed",td:r=>r.jb?`<a href="${esc(r.jb)}" title="${esc(r.jb)}" target="_blank" rel="noopener">${esc(naked(r.jb))}</a>`:dash},
-    {h:"ATS",cls:"nw",tip:"Applicant tracking system behind the job board",td:r=>esc(r.ats),sort:r=>r.ats},
+    {h:"ATS",cls:"nw",tip:"Applicant tracking system behind the job board",td:r=>esc(r.ats)||dash,sort:r=>r.ats},
     {h:"Open Jobs",cls:"nw",tip:"Jobs fetched from this company's board",td:r=>r.oj??dash,sort:r=>r.oj??-1,desc:true},
-    {h:"Category",cls:"nw",td:r=>`<span class="tag ${CATCLS[r.c]||""}">${esc(r.c==="Crypto CFD/derivatives broker"?"Crypto CFD":r.c)}</span>`,sort:r=>r.c},
+    {h:"Affiliate Jobs",cls:"nw",tip:"Jobs from this company in the Affiliate list",td:r=>{const n=AFF.list.filter(j=>j.d===r.d).length;return n||dash},sort:r=>AFF.list.filter(j=>j.d===r.d).length,desc:true},
+    {h:"Category",cls:"nw",td:r=>r.c?`<span class="tag ${CATCLS[r.c]||""}">${esc(r.c==="Crypto CFD/derivatives broker"?"Crypto CFD":r.c)}</span>`:dash,sort:r=>r.c},
     {h:"Headcount",cls:"nw",td:r=>esc(r.hc)||dash,sort:r=>r.hcn},{h:"Founded",cls:"nw",td:r=>r.fy||dash,sort:r=>r.fy},
     {h:"Trading Volume",cls:"wr",td:r=>r.vol?esc(r.vol)+(r.vs?` <a href="${esc(r.vs)}" target="_blank" rel="noopener" title="Source">↗</a>`:""):dash},
-    {h:"Notes",cls:"wr",td:r=>`<span style="font-size:12px;color:var(--muted)">${esc(r.no)}</span>`}];
-  const jc={};JOBS.forEach(j=>j.d&&(jc[j.d]=(jc[j.d]||0)+1));DATA.forEach(r=>r.oj=jc[r.d]||(STATUS[r.d]&&STATUS[r.d].state==="fetched"?0:null));
-  Table(document.getElementById("t-co"),{rows:()=>DATA,search:"Search company, website or ATS",match:(r,q)=>r.n.toLowerCase().includes(q)||r.d.includes(q)||String(r.ats).toLowerCase().includes(q),
+    {h:"Notes",cls:"wr",td:r=>{const x=CREM[r.d];return(x?`<span class="tag bad">Removed by ${esc(x.who)}, ${esc(String(x.timestamp).slice(0,10))}${x.reason?": "+esc(x.reason):""}</span> `:"")+`<span style="font-size:12px;color:var(--muted)">${esc(r.no)}</span>`}},
+    {h:"Action",cls:"nw",tip:"Remove a company that's out of scope, or restore it. Shared with your team and logged.",td:r=>removedCo(r.d)?`<button class="btn" data-act="restore">↺ Restore</button>`:`<button class="btn" data-act="remove">✕ Remove</button>`}];
+  coT=Table(document.getElementById("t-co"),{rows:coRows,search:"Search company, website or ATS",match:(r,q)=>r.n.toLowerCase().includes(q)||r.d.includes(q)||String(r.ats).toLowerCase().includes(q),
     filters:[{label:"Category",options:()=>[["","Category: any"],["Forex/CFD","Forex/CFD"],["Crypto exchange","Crypto exchange"],["Crypto CFD/derivatives broker","Crypto CFD"],["Prop firm","Prop firm"]],test:(r,v)=>r.c===v},
-      {label:"Job board",options:()=>[["","Job board: any"],["y","Has a job board"],["n","No job board"],["f","Jobs fetched"]],test:(r,v)=>v==="y"?!!r.jb:v==="n"?!r.jb:(r.oj>0)}],
+      {label:"Job board",options:()=>[["","Job board: any"],["y","Has a job board"],["n","No job board"],["f","Hiring now (jobs fetched)"],["a","Hiring for affiliate roles"]],test:(r,v)=>v==="y"?!!r.jb:v==="n"?!r.jb:v==="f"?(r.oj>0):AFF.list.some(j=>j.d===r.d)}],
+    extra:'<button class="btn primary" data-addco>+ Add company</button>',onAct:(x,a)=>act("company",a.dataset.act,x),
     noun:"companies",cols:coCols,sort:1,dir:1,csv:r=>["Serial No,Company,Website,LinkedIn,Career,Job Board,ATS,Open Jobs,Category,Headcount,Founded,Trading Volume,Notes"].concat(r.map((x,i)=>[i+1,x.n,"https://"+x.d,x.li,x.cp,x.jb,x.ats,x.oj,x.c,x.hc,x.fy,x.vol,x.no].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(","))).join("\n")});
-  route();
+  document.getElementById("t-co").addEventListener("click",e=>{if(e.target.closest("[data-addco]"))act("company","add",null)});
+  logT=Table(document.getElementById("t-log"),{rows:logRows,search:"Search person, job, company or reason",match:(r,q)=>[r.who,r.title,r.company,r.reason,r.item_id].join(" ").toLowerCase().includes(q),
+    filters:[{label:"Person",options:()=>[["","Person: anyone"],...CFG.people.map(p=>[p,p])],test:(r,v)=>r.who===v},{label:"Action",options:()=>[["","Action: any"],...Object.entries(ACTL).map(([k,v])=>[k,v[0]])],test:(r,v)=>r.action===v}],
+    noun:"actions",empty:API?"No actions yet. Decisions and company changes will be listed here.":"Shared saving isn't connected yet, so there's no activity to show.",
+    onRow:r=>{if(r.entity==="job"){const x=JOBS.find(y=>y.id===r.item_id);if(x)openDrawer(x)}},
+    cols:[{h:"#",cls:"idx",td:r=>r._n},{h:"When",cls:"nw",td:r=>esc(String(r.timestamp).replace("T"," ").slice(0,16))+" UTC",sort:r=>r.timestamp,desc:true},{h:"Who",cls:"nw",td:r=>esc(r.who),sort:r=>r.who},
+      {h:"Action",cls:"nw",td:r=>`<span class="tag ${(ACTL[r.action]||["",""])[1]}">${esc((ACTL[r.action]||[r.action])[0])}</span>`,sort:r=>r.action},
+      {h:"Item",cls:"pos",tip:"The job or company the action was taken on",td:r=>esc(r.entity==="job"?r.title:r.company)+`<div class="by">${r.entity==="job"?"Job":"Company"} · ${esc(r.item_id)}</div>`},
+      {h:"Company",cls:"wr",td:r=>esc(r.company),sort:r=>r.company},{h:"Reason",cls:"wr",td:r=>esc(r.reason)||dash},
+      {h:"Link",cls:"url",td:r=>r.url?`<a href="${esc(r.url)}" title="${esc(r.url)}" target="_blank" rel="noopener">${esc(naked(r.url))}</a>`:dash}],sort:1,dir:-1});
+  refreshAll();route();
 }
-function route(){const v=(location.hash||"#affiliate").slice(1);const ok=["affiliate","jobs","companies","about"].includes(v)?v:"affiliate";
-  ["affiliate","jobs","companies","about"].forEach(x=>document.getElementById("v-"+x).hidden=x!==ok);
-  document.querySelectorAll(".tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===ok?"page":"false"))}
+function route(){const V=["overview","affiliate","jobs","companies","activity","about"];const v=(location.hash||"#overview").slice(1);const ok=V.includes(v)?v:"overview";
+  V.forEach(x=>document.getElementById("v-"+x).hidden=x!==ok);
+  document.querySelectorAll(".tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===ok?"page":"false"));scrollTo(0,0)}
 addEventListener("hashchange",route);
 init();
 </script>
