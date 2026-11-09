@@ -77,9 +77,10 @@ tbody tr.clickable{cursor:pointer}
 td.idx{color:var(--muted);width:3.5em}
 td.pos{font-weight:600;min-width:22ch;max-width:40ch}
 td.nw{white-space:nowrap}
-td.url{max-width:30ch}
-td.url a,a.url{font-family:var(--mono);font-size:12px;word-break:break-all}
-td.wrap{min-width:14ch;max-width:30ch}
+td.url{max-width:32ch}
+td.url a{display:block;max-width:32ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:12px}
+a.url{font-family:var(--mono);font-size:12px;word-break:break-all}
+td.wr{min-width:14ch;max-width:30ch}
 .dash{color:var(--muted)}
 .empty{padding:40px 16px;text-align:center;color:var(--muted)}
 .tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:4px;white-space:nowrap;background:var(--accent-bg);color:var(--accent)}
@@ -316,11 +317,11 @@ const jobFilters=()=>[
 const jobCols=(extra)=>[
   {h:"#",cls:"idx",td:(j,n)=>n},
   {h:"Position",cls:"pos",tip:"Job title exactly as posted. Click a row for the full description.",td:j=>esc(j.t),sort:j=>j.t},
-  {h:"Company",cls:"wrap",tip:"Company from the directory",td:j=>esc(j.c),sort:j=>j.c},
+  {h:"Company",cls:"wr",tip:"Company from the directory",td:j=>esc(j.c),sort:j=>j.c},
   {h:"Posted Date",cls:"nw",tip:"Date the job board says it was posted; blank if not given",td:j=>j.p||dash,sort:j=>j.p,desc:true},
-  {h:"Application Link",cls:"url",tip:"Where you apply, as given by the job board",td:j=>j.u?`<a href="${esc(j.u)}" target="_blank" rel="noopener">${esc(naked(j.u))}</a>`:dash},
+  {h:"Application Link",cls:"url",tip:"Where you apply, as given by the job board",td:j=>j.u?`<a href="${esc(j.u)}" title="${esc(j.u)}" target="_blank" rel="noopener">${esc(naked(j.u))}</a>`:dash},
   ...(extra||[]),
-  {h:"Country",cls:"wrap",tip:"Country stated in the job location; blank if only a city is given",td:j=>j.cc.length?esc(ctry(j)):dash,sort:j=>ctry(j)},
+  {h:"Country",cls:"wr",tip:"Country stated in the job location; blank if only a city is given",td:j=>j.cc.length?esc(ctry(j)):dash,sort:j=>ctry(j)},
   {h:"Work Setup",cls:"nw",tip:"Remote, Hybrid or Onsite, only when stated",td:j=>j.ws||dash,sort:j=>j.ws},
   {h:"Work Authorization",cls:"nw",tip:"Only when the posting states it; hover to read the sentence",td:j=>j.wa?`<span title="${esc(j.waq)}" style="text-decoration:underline dotted">${esc(j.wa)}</span>`:dash,sort:j=>j.wa},
   {h:"Currency",cls:"nw",tip:"Salary currency, as posted",td:j=>esc(j.sc)||dash},
@@ -362,20 +363,20 @@ async function init(){
   if(!API)document.getElementById("aff-notice").innerHTML='<div class="notice">Shared saving isn\'t connected yet, so Relevant / Not relevant buttons won\'t save. The list uses the matching rules.</div>';
   await loadDecisions();refreshAff();
   affT=Table(document.getElementById("t-aff"),{rows:()=>AFF[affView],search:"Search position or company",match:matchJob,filters:jobFilters(),noun:"jobs",csv:csvJobs,onRow:openDrawer,
-    cols:jobCols([{h:"Why matched",cls:"wrap",tip:"The title rule that matched, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.decision==="relevant"?"good":"bad"}">${d.decision==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
+    cols:jobCols([{h:"Why matched",cls:"wr",tip:"The title rule that matched, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.decision==="relevant"?"good":"bad"}">${d.decision==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
       {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)}]),
     sort:3,dir:-1,empty:"No jobs here yet."});
   Table(document.getElementById("t-jobs"),{rows:()=>JOBS,search:"Search position or company",match:matchJob,filters:[{label:"Company",options:()=>[["","Company: any"],...[...new Set(JOBS.map(j=>j.c))].sort().map(c=>[c,c])],test:(j,v)=>j.c===v},...jobFilters()],noun:"jobs",csv:csvJobs,onRow:openDrawer,cols:jobCols(),sort:3,dir:-1});
   const coCols=[{h:"#",cls:"idx",td:(r,n)=>n},{h:"Company",cls:"pos",td:r=>esc(r.n),sort:r=>r.n},{h:"Website",cls:"url",td:r=>`<a href="https://${esc(r.d)}" target="_blank" rel="noopener">${esc(r.d)}</a>`,sort:r=>r.d},
     {h:"LinkedIn",cls:"url",td:r=>r.li?`<a href="${esc(r.li)}" target="_blank" rel="noopener">${esc(naked(r.li).replace(/^linkedin\.com\/company\//,""))}</a>`:dash},
-    {h:"Career",cls:"url",tip:"Careers page on the company's own site",td:r=>r.cp?`<a href="${esc(r.cp)}" target="_blank" rel="noopener">${esc(naked(r.cp))}</a>`:dash},
-    {h:"Job Board",cls:"url",tip:"Page where open roles are listed",td:r=>r.jb?`<a href="${esc(r.jb)}" target="_blank" rel="noopener">${esc(naked(r.jb))}</a>`:dash},
+    {h:"Career",cls:"url",tip:"Careers page on the company's own site",td:r=>r.cp?`<a href="${esc(r.cp)}" title="${esc(r.cp)}" target="_blank" rel="noopener">${esc(naked(r.cp))}</a>`:dash},
+    {h:"Job Board",cls:"url",tip:"Page where open roles are listed",td:r=>r.jb?`<a href="${esc(r.jb)}" title="${esc(r.jb)}" target="_blank" rel="noopener">${esc(naked(r.jb))}</a>`:dash},
     {h:"ATS",cls:"nw",tip:"Applicant tracking system behind the job board",td:r=>esc(r.ats),sort:r=>r.ats},
     {h:"Open Jobs",cls:"nw",tip:"Jobs fetched from this company's board",td:r=>r.oj??dash,sort:r=>r.oj??-1,desc:true},
     {h:"Category",cls:"nw",td:r=>`<span class="tag ${CATCLS[r.c]||""}">${esc(r.c==="Crypto CFD/derivatives broker"?"Crypto CFD":r.c)}</span>`,sort:r=>r.c},
     {h:"Headcount",cls:"nw",td:r=>esc(r.hc)||dash,sort:r=>r.hcn},{h:"Founded",cls:"nw",td:r=>r.fy||dash,sort:r=>r.fy},
-    {h:"Trading Volume",cls:"wrap",td:r=>r.vol?esc(r.vol)+(r.vs?` <a href="${esc(r.vs)}" target="_blank" rel="noopener" title="Source">↗</a>`:""):dash},
-    {h:"Notes",cls:"wrap",td:r=>`<span style="font-size:12px;color:var(--muted)">${esc(r.no)}</span>`}];
+    {h:"Trading Volume",cls:"wr",td:r=>r.vol?esc(r.vol)+(r.vs?` <a href="${esc(r.vs)}" target="_blank" rel="noopener" title="Source">↗</a>`:""):dash},
+    {h:"Notes",cls:"wr",td:r=>`<span style="font-size:12px;color:var(--muted)">${esc(r.no)}</span>`}];
   const jc={};JOBS.forEach(j=>j.d&&(jc[j.d]=(jc[j.d]||0)+1));DATA.forEach(r=>r.oj=jc[r.d]||(STATUS[r.d]&&STATUS[r.d].state==="fetched"?0:null));
   Table(document.getElementById("t-co"),{rows:()=>DATA,search:"Search company, website or ATS",match:(r,q)=>r.n.toLowerCase().includes(q)||r.d.includes(q)||String(r.ats).toLowerCase().includes(q),
     filters:[{label:"Category",options:()=>[["","Category: any"],["Forex/CFD","Forex/CFD"],["Crypto exchange","Crypto exchange"],["Crypto CFD/derivatives broker","Crypto CFD"],["Prop firm","Prop firm"]],test:(r,v)=>r.c===v},
