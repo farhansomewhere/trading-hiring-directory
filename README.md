@@ -1,5 +1,9 @@
 # Trading Hiring Directory
 
-Forex/CFD brokers, crypto exchanges and prop firms with their job boards and live jobs.
+Affiliate, partnership and IB jobs at forex/CFD brokers, crypto exchanges and prop firms, plus every open job at 378 companies.
 
-Open `index.html`, or view the live site on GitHub Pages.
+Live site: https://farhansomewhere.github.io/trading-hiring-directory/
+
+- `index.html`: the site (data built in)
+- `jobs/`: full job descriptions, loaded on demand
+- `apps-script/Code.gs`: Google Apps Script that stores shared Relevant / Not relevant decisions
