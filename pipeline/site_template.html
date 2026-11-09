@@ -126,6 +126,10 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:40;font-size:13px;box-shadow:var(--shadow)}
 .notice{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:13px}
 
+.contacts{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px;background:var(--raised)}
+.contacts h3{margin:0 0 8px;font-size:14px}
+.contacts ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.contacts li{display:grid;gap:2px;font-size:13px}
 /* Overview */
 .ov{display:grid;gap:14px}
 .ovh{font-family:var(--display);font-size:17px;margin:8px 0 0}
@@ -192,7 +196,7 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
 <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="dr-title">
   <button class="btn ghost close" id="dr-close" aria-label="Close">✕</button>
   <header><h2 id="dr-title"></h2><div class="meta" id="dr-meta"></div><div class="actions" id="dr-actions"></div></header>
-  <div class="body"><div id="dr-quote"></div><div class="desc" id="dr-desc"></div></div>
+  <div class="body"><div id="dr-contacts"></div><div id="dr-quote"></div><div class="desc" id="dr-desc"></div></div>
 </aside>
 
 <dialog id="dlg"><form method="dialog" id="dlg-form">
@@ -206,8 +210,15 @@ dialog .row{display:flex;justify-content:flex-end;gap:8px}
   </div>
   <label>Your name<select id="dlg-who" required></select></label>
   <label id="dlg-pass-l">Team passcode<input id="dlg-pass" type="password" autocomplete="off" required></label>
-  <label>Reason (optional, helps the matching learn and is kept in the log)<textarea id="dlg-reason" rows="3" placeholder="e.g. IB acquisition role; or: payments partnership, not affiliate"></textarea></label>
+  <label>Reason<select id="dlg-preset"></select></label>
+  <label>Note (optional)<textarea id="dlg-reason" rows="2" placeholder="e.g. IB acquisition role; or: payments partnership, not affiliate"></textarea></label>
   <div class="row"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn primary" value="ok" id="dlg-ok">Save</button></div>
+</form></dialog>
+<dialog id="cdlg"><form method="dialog">
+  <h3>Unlock contacts</h3>
+  <p style="margin:0;color:var(--muted);font-size:13px">Contacts are encrypted so they aren't public. Enter your team's contacts key; this browser will remember it.</p>
+  <label>Contacts key<input id="ckey" type="password" autocomplete="off" required></label>
+  <div class="row"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn primary" value="ok">Unlock</button></div>
 </form></dialog>
 <div class="toast" id="toast" hidden></div>
 
@@ -272,9 +283,45 @@ function computeAff(){
   L.sugg.sort((a,b)=>b.sc_-a.sc_);return L;
 }
 
+/* ---------------- contacts (encrypted; unlock with the team contacts key) ---------------- */
+let CONTACTS=null;
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function unlockContacts(key,quiet){
+  if(!CFG.contacts||!window.crypto||!crypto.subtle)return false;
+  try{const E=CFG.contacts;const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(key),"PBKDF2",false,["deriveKey"]);
+    const k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(E.salt),iterations:E.iter,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+    const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(E.iv)},k,b64(E.ct));CONTACTS=JSON.parse(new TextDecoder().decode(pt));store.set("ckey",key);return true}
+  catch(_){if(!quiet)toast("That contacts key didn't work. Check it and try again.");return false}}
+const cdlg=document.getElementById("cdlg");
+function askContactsKey(){cdlg.onclose=async()=>{if(cdlg.returnValue!=="ok")return;if(await unlockContacts(document.getElementById("ckey").value.trim())){toast("Contacts unlocked on this browser");refreshAll();const dr=document.getElementById("drawer");if(!dr.hidden&&dr._job)openDrawer(dr._job)}};document.getElementById("ckey").value="";cdlg.showModal()}
+const cfor=j=>CONTACTS?(CONTACTS[j.d]||[]):null;
+function contactsCell(j){if(!CFG.contacts)return dash;if(!CONTACTS)return `<button class="btn" data-unlock title="Contacts are encrypted; unlock with your team's contacts key">🔒 Unlock</button>`;
+  const c=cfor(j);if(!c.length)return dash;const hm=c.filter(x=>x.r==="hiring manager").length;return `<button class="btn" data-open title="Open the job to see who to contact">${c.length} ${c.length===1?"person":"people"}</button><div class="by">${hm} hiring mgr · ${c.length-hm} recruiter</div>`}
+function contactsHtml(j){if(!CFG.contacts)return "";
+  if(!CONTACTS)return `<div class="contacts"><h3>People to contact</h3><p class="dash">Contacts are encrypted. <button class="btn" data-unlock>🔒 Unlock contacts</button></p></div>`;
+  const c=cfor(j);if(!c.length)return `<div class="contacts"><h3>People to contact</h3><p class="dash">No contacts found for ${esc(j.c)} yet.</p></div>`;
+  return `<div class="contacts"><h3>People to contact at ${esc(j.c)}</h3><ul>${c.map(x=>`<li><b>${esc(x.n)}</b> <span class="tag ${x.r==="recruiter"?"muted":""}">${esc(x.r)}</span><div>${esc(x.t)}</div>${x.li?`<a href="${esc(x.li)}" target="_blank" rel="noopener" class="url">${esc(naked(x.li))}</a>`:""}<div class="by">Source: ${esc(x.s)}. Check the profile before reaching out; titles can be out of date.</div></li>`).join("")}</ul></div>`}
+document.addEventListener("click",e=>{if(e.target.closest("[data-unlock]")){e.stopPropagation();askContactsKey()}},true);
+
 /* ---------------- saving actions ---------------- */
 const dlg=document.getElementById("dlg");
 document.getElementById("dlg-who").innerHTML=CFG.people.map(p=>`<option>${esc(p)}</option>`).join("");
+const PRESETS={
+  relevant:["Affiliate management","IB / introducing broker acquisition","Partnerships with affiliate or IB scope","BD role covering affiliates / IBs","Partner marketing / growth","Affiliate operations","Head of affiliates / partnerships"],
+  not_relevant:["Language-specific role (non-English)","Not affiliate / IB work","Posting not in English","Payments / product / listing partnership","Marketing role, not affiliate","Sales / BD without affiliate or IB scope","Technical role","Influencer / creator role","Wrong seniority","Location not suitable","Company out of scope","Duplicate posting","Job closed or expired"],
+  clear:["Changed my mind","Decided by mistake"],
+  remove:["Not a broker, exchange or prop firm","Closed or winding down","Regulatory warnings / not trustworthy","Duplicate of another company","Doesn't hire affiliate / IB roles"],
+  restore:["Removed by mistake","Back in scope"],
+  add:["Hires affiliate / IB roles","Peer broker / exchange","Recommended by the team"]};
+function presetOptions(action){
+  // learned: reasons your team already used for this action, most used first
+  const used={};LOG.forEach(r=>{if(r.action===action&&r.reason){const base=String(r.reason).split(" — ")[0].trim();if(base)used[base]=(used[base]||0)+1}});
+  const preset=PRESETS[action]||[];
+  const learned=Object.entries(used).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).filter(x=>!preset.some(p=>p.toLowerCase()===x.toLowerCase()));
+  const rank=x=>-(used[x]||0);
+  const ps=[...preset].sort((a,b)=>rank(a)-rank(b));
+  return '<option value="">Choose a reason (optional)</option>'+`<optgroup label="Common reasons">${ps.map(x=>`<option>${esc(x)}</option>`).join("")}</optgroup>`+(learned.length?`<optgroup label="Used by your team">${learned.map(x=>`<option>${esc(x)}</option>`).join("")}</optgroup>`:"")+'<option value="__other">Other (write it in the note)</option>';
+}
 const LABEL={relevant:"Mark job as relevant",not_relevant:"Mark job as not relevant",clear:"Clear decision",remove:"Remove company",restore:"Restore company",add:"Add a company"};
 function act(entity,action,item,onDone){
   if(!API){toast("Saving isn't connected yet. The Google Sheet web app address needs to be added first.");return}
@@ -285,9 +332,10 @@ function act(entity,action,item,onDone){
   document.getElementById("dlg-who").value=who||CFG.people[0];
   document.getElementById("dlg-pass").value=pass;document.getElementById("dlg-pass-l").hidden=!!pass;
   document.getElementById("dlg-reason").value="";
+  document.getElementById("dlg-preset").innerHTML=presetOptions(action);
   document.getElementById("dlg-reason").placeholder=entity==="company"?"e.g. not a broker / out of scope; or: hires IB managers in LATAM":"e.g. IB acquisition role; or: payments partnership, not affiliate";
   dlg.onclose=async()=>{if(dlg.returnValue!=="ok")return;
-    let body={passcode:document.getElementById("dlg-pass").value,entity,action,who:document.getElementById("dlg-who").value,reason:document.getElementById("dlg-reason").value};
+    let body={passcode:document.getElementById("dlg-pass").value,entity,action,who:document.getElementById("dlg-who").value,reason:(()=>{const p=document.getElementById("dlg-preset").value,n=document.getElementById("dlg-reason").value.trim();return p&&p!=="__other"?(n?p+" — "+n:p):n})()};
     if(entity==="job")body={...body,item_id:item.id,title:item.t,company:item.c,url:item.u,details:{row:item._row||"",posted:item.p,board:item.via}};
     else if(action==="add"){const web=document.getElementById("dlg-cweb").value.trim().replace(/^https?:\/\/(www\.)?/,"").replace(/\/.*$/,"").toLowerCase();
       body={...body,item_id:web,title:"",company:document.getElementById("dlg-cname").value.trim(),url:"https://"+web,details:{category:document.getElementById("dlg-ccat").value,job_board:document.getElementById("dlg-cjb").value.trim(),linkedin:document.getElementById("dlg-cli").value.trim()}}}
@@ -362,12 +410,13 @@ const csvJobs=r=>["Serial No,Position,Company,Posted Date,Application Link,Count
 /* ---------------- drawer ---------------- */
 const cache={};const chunk=k=>cache[k]||(cache[k]=fetch("jobs/desc_"+k+".json").then(r=>r.json()));
 let lastFocus=null;
-async function openDrawer(j){lastFocus=document.activeElement;const dr=document.getElementById("drawer");
+async function openDrawer(j){lastFocus=document.activeElement;const dr=document.getElementById("drawer");dr._job=j;
   document.getElementById("dr-title").textContent=j.t;
   const m=[["Company",j.c],["Posted",j.p],["Country",ctry(j)],["Work setup",j.ws],["Work authorization",j.wa],["Salary",[j.sc,fmtAmt(j),j.sper].filter(Boolean).join(" ")],["Source",j.via]].filter(x=>x[1]);
   document.getElementById("dr-meta").innerHTML=m.map(x=>`<span>${x[0]}: <b>${esc(x[1])}</b></span>`).join("");
   const d=DEC[j.id];
   document.getElementById("dr-actions").innerHTML=(j.u?`<a class="btn primary" href="${esc(j.u)}" target="_blank" rel="noopener">Apply ↗</a><a class="url" href="${esc(j.u)}" target="_blank" rel="noopener">${esc(naked(j.u))}</a>`:"")+`<span style="flex:1"></span>${decCell(j)}`;
+  document.getElementById("dr-contacts").innerHTML=j.aff||cfor(j)?.length?contactsHtml(j):"";
   document.getElementById("dr-quote").innerHTML=j.wa?`<p class="quote"><b>Work authorization, as stated:</b> ${esc(j.waq)}</p>`:"";
   const ds=document.getElementById("dr-desc");ds.textContent="Loading…";
   dr.hidden=false;document.getElementById("scrim").hidden=false;document.getElementById("dr-close").focus();
@@ -426,10 +475,11 @@ function logRows(){return[...LOG].reverse().map((r,i)=>({...r,_n:LOG.length-i}))
 
 async function init(){
   if(!API){const n='<div class="notice">Shared saving isn\'t connected yet, so Relevant / Not relevant and company add / remove won\'t save. Lists use the matching rules.</div>';document.getElementById("aff-notice").innerHTML=n;document.getElementById("co-notice").innerHTML=n;document.getElementById("log-notice").innerHTML=n}
-  await loadLog();AFF=computeAff();
+  await loadLog();const ck=store.get("ckey","");if(ck)await unlockContacts(ck,true);AFF=computeAff();
   affT=Table(document.getElementById("t-aff"),{rows:()=>AFF[affView],search:"Search position or company",match:matchJob,filters:jobFilters(),noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
     cols:jobCols([{h:"Why matched",cls:"wr",tip:"The title rule that matched, your team's decision, or the words the learning model weighs most",td:j=>{const d=DEC[j.id];return d?`<span class="tag ${d.action==="relevant"?"good":"bad"}">${d.action==="relevant"?"Marked relevant":"Marked not relevant"}</span>`:j.rej?`<span class="tag warn">${esc(j.rej)}</span>`:affView==="sugg"?`<span class="tag muted">Suggested ${Math.round(j.sc_*100)}%</span><div class="by">${esc(why(j))}</div>`:`<span class="tag">${esc(j.am)}</span>`}},
-      {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)}]),sort:3,dir:-1,empty:"No jobs here yet."});
+      {h:"Decision",cls:"nw",tip:"Shared with your team; teaches the matching",td:j=>decCell(j)},
+      {h:"Contacts",cls:"nw",tip:"Likely hiring managers and recruiters at this company (encrypted; unlock with your team's contacts key)",td:j=>contactsCell(j)}]),sort:3,dir:-1,empty:"No jobs here yet."});
   jobsT=Table(document.getElementById("t-jobs"),{rows:()=>JOBS.filter(j=>!removedCo(j.d)),search:"Search position or company",match:matchJob,filters:[{label:"Company",options:()=>[["","Company: any"],...[...new Set(JOBS.map(j=>j.c))].sort().map(c=>[c,c])],test:(j,v)=>j.c===v},...jobFilters()],noun:"jobs",csv:csvJobs,onRow:openDrawer,onAct:(x,a)=>decideJob(x,a.getAttribute("aria-pressed")==="true"?"clear":a.dataset.act),
     cols:jobCols([{h:"Affiliate?",cls:"nw",tip:"Mark any job relevant to add it to Affiliate Jobs",td:j=>decCell(j)}]),sort:3,dir:-1});
   const coCols=[{h:"#",cls:"idx",td:(r,n)=>n},{h:"Company",cls:"pos",td:r=>esc(r.n)+(r._added?' <span class="tag good">Added</span>':""),sort:r=>r.n},{h:"Website",cls:"url",td:r=>`<a href="https://${esc(r.d)}" target="_blank" rel="noopener">${esc(r.d)}</a>`,sort:r=>r.d},

@@ -3,7 +3,8 @@ ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),'..'));B=os.path.joi
 F=json.load(open(f'{B}/final.json'));J=json.load(open(f'{B}/jobs_index.json'));S=json.load(open(f'{B}/jobs_status.json'))
 import aff_rules as R
 CN={c.alpha_2:getattr(c,'common_name',None) or c.name for c in pycountry.countries}
-CFG={"api":os.environ.get("SHEET_API","https://script.google.com/macros/s/AKfycby9hMfBJYHPMJ6I5bDYQGzZ8VEZ5TCv-wSm5inVfp2-izw3CRw6SSWyy4FttWu4CE_a/exec"),"people":["Farhan","Marjan","Owais"],"th":0.7,"seed":"2026-11-09","rej":[w.replace(" ","\\s+") for w in R.LANG+R.OTHER]}
+CON=json.load(open(f"{B}/contacts.enc.json")) if os.path.exists(f"{B}/contacts.enc.json") else None
+CFG={"contacts":CON,"api":os.environ.get("SHEET_API","https://script.google.com/macros/s/AKfycby9hMfBJYHPMJ6I5bDYQGzZ8VEZ5TCv-wSm5inVfp2-izw3CRw6SSWyy4FttWu4CE_a/exec"),"people":["Farhan","Marjan","Owais"],"th":0.7,"seed":"2026-11-09","rej":[w.replace(" ","\\s+") for w in R.LANG+R.OTHER]}
 e=html.escape
 inc="".join(f"<li><b>{e(l)}</b></li>" for l,_ in R.INCLUDE)
 fetched=sum(1 for v in S.values() if v['state']=='fetched');nf=[(F_[0],v) for F_ in [(d,) for d in S] for v in [S[F_[0]]] if v['state']=='not fetched']
