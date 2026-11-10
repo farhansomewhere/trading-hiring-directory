@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 246,
+"jobs": 249,
 "source": "moka",
 "reason": ""
 },
@@ -409,7 +409,7 @@
 },
 "coins.ph": {
 "state": "fetched",
-"jobs": 83,
+"jobs": 84,
 "source": "lever",
 "reason": ""
 },
@@ -1201,7 +1201,7 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 377,
+"jobs": 379,
 "source": "greenhouse",
 "reason": ""
 },
