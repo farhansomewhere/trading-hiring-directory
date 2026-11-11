@@ -13,13 +13,13 @@
 },
 "admiralmarkets.com": {
 "state": "fetched",
-"jobs": 1,
+"jobs": 2,
 "source": "workable",
 "reason": ""
 },
 "alpari.com": {
 "state": "fetched",
-"jobs": 18,
+"jobs": 19,
 "source": "smartrecruiters",
 "reason": ""
 },
@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 249,
+"jobs": 250,
 "source": "moka",
 "reason": ""
 },
@@ -187,7 +187,7 @@
 },
 "bitpanda.com": {
 "state": "fetched",
-"jobs": 43,
+"jobs": 44,
 "source": "greenhouse",
 "reason": ""
 },
@@ -277,7 +277,7 @@
 },
 "btse.com": {
 "state": "fetched",
-"jobs": 36,
+"jobs": 38,
 "source": "lever",
 "reason": ""
 },
@@ -301,7 +301,7 @@
 },
 "bybit.com": {
 "state": "fetched",
-"jobs": 151,
+"jobs": 150,
 "source": "greenhouse",
 "reason": ""
 },
@@ -349,7 +349,7 @@
 },
 "cmcmarkets.com": {
 "state": "fetched",
-"jobs": 73,
+"jobs": 75,
 "source": "workday",
 "reason": ""
 },
@@ -361,7 +361,7 @@
 },
 "coinbase.com": {
 "state": "fetched",
-"jobs": 285,
+"jobs": 286,
 "source": "greenhouse",
 "reason": ""
 },
@@ -409,7 +409,7 @@
 },
 "coins.ph": {
 "state": "fetched",
-"jobs": 84,
+"jobs": 87,
 "source": "lever",
 "reason": ""
 },
@@ -439,7 +439,7 @@
 },
 "crypto.com": {
 "state": "fetched",
-"jobs": 97,
+"jobs": 90,
 "source": "lever",
 "reason": ""
 },
@@ -481,7 +481,7 @@
 },
 "deribit.com": {
 "state": "fetched",
-"jobs": 285,
+"jobs": 286,
 "source": "greenhouse",
 "reason": ""
 },
@@ -601,7 +601,7 @@
 },
 "exness.com": {
 "state": "fetched",
-"jobs": 35,
+"jobs": 34,
 "source": "greenhouse",
 "reason": ""
 },
@@ -661,7 +661,7 @@
 },
 "fundednext.com": {
 "state": "fetched",
-"jobs": 46,
+"jobs": 48,
 "source": "recruitee_host",
 "reason": ""
 },
@@ -721,7 +721,7 @@
 },
 "fxtm.com": {
 "state": "fetched",
-"jobs": 18,
+"jobs": 19,
 "source": "smartrecruiters",
 "reason": ""
 },
@@ -763,7 +763,7 @@
 },
 "gemini.com": {
 "state": "fetched",
-"jobs": 27,
+"jobs": 29,
 "source": "greenhouse",
 "reason": ""
 },
@@ -889,7 +889,7 @@
 },
 "ig.com": {
 "state": "fetched",
-"jobs": 83,
+"jobs": 82,
 "source": "workday",
 "reason": ""
 },
@@ -913,7 +913,7 @@
 },
 "ingot.io": {
 "state": "fetched",
-"jobs": 24,
+"jobs": 26,
 "source": "bamboohr",
 "reason": ""
 },
@@ -967,7 +967,7 @@
 },
 "justmarkets.com": {
 "state": "fetched",
-"jobs": 127,
+"jobs": 128,
 "source": "greenhouse",
 "reason": ""
 },
@@ -985,13 +985,13 @@
 },
 "kraken.com": {
 "state": "fetched",
-"jobs": 89,
+"jobs": 92,
 "source": "ashby",
 "reason": ""
 },
 "kucoin.com": {
 "state": "fetched",
-"jobs": 32,
+"jobs": 34,
 "source": "moka",
 "reason": ""
 },
@@ -1015,7 +1015,7 @@
 },
 "libertex.com": {
 "state": "fetched",
-"jobs": 9,
+"jobs": 10,
 "source": "workable",
 "reason": ""
 },
@@ -1033,7 +1033,7 @@
 },
 "luno.com": {
 "state": "fetched",
-"jobs": 2,
+"jobs": 3,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1201,7 +1201,7 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 379,
+"jobs": 386,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1285,7 +1285,7 @@
 },
 "pepperstone.com": {
 "state": "fetched",
-"jobs": 19,
+"jobs": 25,
 "source": "workable",
 "reason": ""
 },
@@ -1381,7 +1381,7 @@
 },
 "home.saxo": {
 "state": "fetched",
-"jobs": 62,
+"jobs": 61,
 "source": "workday",
 "reason": ""
 },
@@ -1417,7 +1417,7 @@
 },
 "swissborg.com": {
 "state": "fetched",
-"jobs": 9,
+"jobs": 10,
 "source": "lever",
 "reason": ""
 },
@@ -1507,13 +1507,13 @@
 },
 "topstep.com": {
 "state": "fetched",
-"jobs": 20,
+"jobs": 18,
 "source": "greenhouse",
 "reason": ""
 },
 "tradenation.com": {
 "state": "fetched",
-"jobs": 61,
+"jobs": 62,
 "source": "workable",
 "reason": ""
 },
@@ -1525,7 +1525,7 @@
 },
 "tradeify.co": {
 "state": "fetched",
-"jobs": 4,
+"jobs": 5,
 "source": "ashby",
 "reason": ""
 },
@@ -1585,7 +1585,7 @@
 },
 "valr.com": {
 "state": "fetched",
-"jobs": 1,
+"jobs": 2,
 "source": "hibob",
 "reason": ""
 },
@@ -1627,7 +1627,7 @@
 },
 "whitebit.com": {
 "state": "fetched",
-"jobs": 41,
+"jobs": 42,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1645,7 +1645,7 @@
 },
 "xm.com": {
 "state": "fetched",
-"jobs": 63,
+"jobs": 64,
 "source": "lever",
 "reason": ""
 },
