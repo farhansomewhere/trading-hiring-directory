@@ -103,7 +103,7 @@
 },
 "binance.com": {
 "state": "fetched",
-"jobs": 223,
+"jobs": 222,
 "source": "greenhouse",
 "reason": ""
 },
@@ -661,7 +661,7 @@
 },
 "fundednext.com": {
 "state": "fetched",
-"jobs": 50,
+"jobs": 51,
 "source": "recruitee_host",
 "reason": ""
 },
@@ -889,7 +889,7 @@
 },
 "ig.com": {
 "state": "fetched",
-"jobs": 88,
+"jobs": 87,
 "source": "workday",
 "reason": ""
 },
@@ -1201,7 +1201,7 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 392,
+"jobs": 391,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1483,7 +1483,7 @@
 },
 "tmgm.com": {
 "state": "fetched",
-"jobs": 53,
+"jobs": 52,
 "source": "workable",
 "reason": ""
 },
