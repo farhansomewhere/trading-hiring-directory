@@ -91,7 +91,7 @@
 },
 "axi.com": {
 "state": "fetched",
-"jobs": 31,
+"jobs": 30,
 "source": "greenhouse",
 "reason": ""
 },
@@ -103,7 +103,7 @@
 },
 "binance.com": {
 "state": "fetched",
-"jobs": 222,
+"jobs": 223,
 "source": "greenhouse",
 "reason": ""
 },
@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 269,
+"jobs": 270,
 "source": "moka",
 "reason": ""
 },
@@ -301,7 +301,7 @@
 },
 "bybit.com": {
 "state": "fetched",
-"jobs": 153,
+"jobs": 155,
 "source": "greenhouse",
 "reason": ""
 },
@@ -349,7 +349,7 @@
 },
 "cmcmarkets.com": {
 "state": "fetched",
-"jobs": 75,
+"jobs": 73,
 "source": "workday",
 "reason": ""
 },
@@ -888,10 +888,10 @@
 "reason": "board is live with 0 open roles"
 },
 "ig.com": {
-"state": "fetched",
-"jobs": 87,
+"state": "not fetched",
+"jobs": 0,
 "source": "workday",
-"reason": ""
+"reason": "board did not answer"
 },
 "independentreserve.com": {
 "state": "fetched",
@@ -1188,10 +1188,10 @@
 "reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
 },
 "oanda.com": {
-"state": "fetched",
-"jobs": 26,
+"state": "not fetched",
+"jobs": 0,
 "source": "workday",
-"reason": ""
+"reason": "board did not answer"
 },
 "octafx.com": {
 "state": "not fetched",
@@ -1477,13 +1477,13 @@
 },
 "titanfx.com": {
 "state": "fetched",
-"jobs": 0,
+"jobs": 1,
 "source": "teamtailor",
-"reason": "board is live with 0 open roles"
+"reason": ""
 },
 "tmgm.com": {
 "state": "fetched",
-"jobs": 52,
+"jobs": 53,
 "source": "workable",
 "reason": ""
 },
