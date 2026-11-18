@@ -85,13 +85,13 @@
 },
 "avatrade.com": {
 "state": "fetched",
-"jobs": 16,
+"jobs": 17,
 "source": "comeet",
 "reason": ""
 },
 "axi.com": {
 "state": "fetched",
-"jobs": 29,
+"jobs": 27,
 "source": "greenhouse",
 "reason": ""
 },
@@ -115,7 +115,7 @@
 },
 "bit2me.com": {
 "state": "fetched",
-"jobs": 1,
+"jobs": 2,
 "source": "web page (structured data)",
 "reason": ""
 },
@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 269,
+"jobs": 270,
 "source": "moka",
 "reason": ""
 },
@@ -187,7 +187,7 @@
 },
 "bitpanda.com": {
 "state": "fetched",
-"jobs": 50,
+"jobs": 49,
 "source": "greenhouse",
 "reason": ""
 },
@@ -211,7 +211,7 @@
 },
 "bitvavo.com": {
 "state": "fetched",
-"jobs": 14,
+"jobs": 15,
 "source": "ashby",
 "reason": ""
 },
@@ -277,7 +277,7 @@
 },
 "btse.com": {
 "state": "fetched",
-"jobs": 38,
+"jobs": 39,
 "source": "lever",
 "reason": ""
 },
@@ -301,7 +301,7 @@
 },
 "bybit.com": {
 "state": "fetched",
-"jobs": 161,
+"jobs": 163,
 "source": "greenhouse",
 "reason": ""
 },
@@ -319,7 +319,7 @@
 },
 "capital.com": {
 "state": "fetched",
-"jobs": 49,
+"jobs": 47,
 "source": "lever",
 "reason": ""
 },
@@ -361,7 +361,7 @@
 },
 "coinbase.com": {
 "state": "fetched",
-"jobs": 261,
+"jobs": 256,
 "source": "greenhouse",
 "reason": ""
 },
@@ -439,7 +439,7 @@
 },
 "crypto.com": {
 "state": "fetched",
-"jobs": 88,
+"jobs": 85,
 "source": "lever",
 "reason": ""
 },
@@ -481,7 +481,7 @@
 },
 "deribit.com": {
 "state": "fetched",
-"jobs": 261,
+"jobs": 256,
 "source": "greenhouse",
 "reason": ""
 },
@@ -583,7 +583,7 @@
 },
 "etoro.com": {
 "state": "fetched",
-"jobs": 18,
+"jobs": 19,
 "source": "greenhouse",
 "reason": ""
 },
@@ -601,7 +601,7 @@
 },
 "exness.com": {
 "state": "fetched",
-"jobs": 38,
+"jobs": 42,
 "source": "greenhouse",
 "reason": ""
 },
@@ -649,7 +649,7 @@
 },
 "fpmarkets.com": {
 "state": "fetched",
-"jobs": 43,
+"jobs": 44,
 "source": "workable",
 "reason": ""
 },
@@ -661,7 +661,7 @@
 },
 "fundednext.com": {
 "state": "fetched",
-"jobs": 51,
+"jobs": 52,
 "source": "recruitee_host",
 "reason": ""
 },
@@ -691,7 +691,7 @@
 },
 "fxgt.com": {
 "state": "fetched",
-"jobs": 5,
+"jobs": 4,
 "source": "bamboohr",
 "reason": ""
 },
@@ -709,7 +709,7 @@
 },
 "fxpro.com": {
 "state": "fetched",
-"jobs": 51,
+"jobs": 50,
 "source": "greenhouse",
 "reason": ""
 },
@@ -865,7 +865,7 @@
 },
 "icmarkets.com": {
 "state": "fetched",
-"jobs": 21,
+"jobs": 18,
 "source": "bamboohr",
 "reason": ""
 },
@@ -967,7 +967,7 @@
 },
 "justmarkets.com": {
 "state": "fetched",
-"jobs": 134,
+"jobs": 135,
 "source": "greenhouse",
 "reason": ""
 },
@@ -985,7 +985,7 @@
 },
 "kraken.com": {
 "state": "fetched",
-"jobs": 95,
+"jobs": 92,
 "source": "ashby",
 "reason": ""
 },
@@ -1201,13 +1201,13 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 396,
+"jobs": 393,
 "source": "greenhouse",
 "reason": ""
 },
 "oneroyal.com": {
 "state": "fetched",
-"jobs": 15,
+"jobs": 18,
 "source": "bamboohr",
 "reason": ""
 },
@@ -1309,7 +1309,7 @@
 },
 "primexbt.com": {
 "state": "fetched",
-"jobs": 21,
+"jobs": 22,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1423,7 +1423,7 @@
 },
 "swissquote.com": {
 "state": "fetched",
-"jobs": 36,
+"jobs": 35,
 "source": "smartrecruiters",
 "reason": ""
 },
@@ -1465,7 +1465,7 @@
 },
 "tickmill.com": {
 "state": "fetched",
-"jobs": 43,
+"jobs": 47,
 "source": "bamboohr",
 "reason": ""
 },
@@ -1483,7 +1483,7 @@
 },
 "tmgm.com": {
 "state": "fetched",
-"jobs": 53,
+"jobs": 56,
 "source": "workable",
 "reason": ""
 },
@@ -1507,7 +1507,7 @@
 },
 "topstep.com": {
 "state": "fetched",
-"jobs": 17,
+"jobs": 15,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1537,7 +1537,7 @@
 },
 "trading212.com": {
 "state": "fetched",
-"jobs": 61,
+"jobs": 66,
 "source": "ashby",
 "reason": ""
 },
@@ -1621,13 +1621,13 @@
 },
 "weltrade.com": {
 "state": "fetched",
-"jobs": 7,
+"jobs": 8,
 "source": "peopleforce",
 "reason": ""
 },
 "whitebit.com": {
 "state": "fetched",
-"jobs": 46,
+"jobs": 49,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1645,7 +1645,7 @@
 },
 "xm.com": {
 "state": "fetched",
-"jobs": 69,
+"jobs": 68,
 "source": "lever",
 "reason": ""
 },
@@ -1663,7 +1663,7 @@
 },
 "xtb.com": {
 "state": "fetched",
-"jobs": 48,
+"jobs": 46,
 "source": "lever",
 "reason": ""
 },
