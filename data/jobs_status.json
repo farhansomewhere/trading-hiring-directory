@@ -103,7 +103,7 @@
 },
 "binance.com": {
 "state": "fetched",
-"jobs": 227,
+"jobs": 226,
 "source": "greenhouse",
 "reason": ""
 },
@@ -348,10 +348,10 @@
 "reason": "LinkedIn blocks automated reading; not fetched"
 },
 "cmcmarkets.com": {
-"state": "not fetched",
-"jobs": 0,
+"state": "fetched",
+"jobs": 40,
 "source": "workday",
-"reason": "board did not answer"
+"reason": ""
 },
 "cmtrading.com": {
 "state": "not fetched",
@@ -361,7 +361,7 @@
 },
 "coinbase.com": {
 "state": "fetched",
-"jobs": 253,
+"jobs": 252,
 "source": "greenhouse",
 "reason": ""
 },
@@ -439,7 +439,7 @@
 },
 "crypto.com": {
 "state": "fetched",
-"jobs": 90,
+"jobs": 91,
 "source": "lever",
 "reason": ""
 },
@@ -481,7 +481,7 @@
 },
 "deribit.com": {
 "state": "fetched",
-"jobs": 253,
+"jobs": 252,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1188,10 +1188,10 @@
 "reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
 },
 "oanda.com": {
-"state": "not fetched",
-"jobs": 0,
+"state": "fetched",
+"jobs": 27,
 "source": "workday",
-"reason": "board did not answer"
+"reason": ""
 },
 "octafx.com": {
 "state": "not fetched",
@@ -1201,7 +1201,7 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 388,
+"jobs": 391,
 "source": "greenhouse",
 "reason": ""
 },
