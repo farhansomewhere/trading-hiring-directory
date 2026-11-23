@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 269,
+"jobs": 268,
 "source": "moka",
 "reason": ""
 },
@@ -277,7 +277,7 @@
 },
 "btse.com": {
 "state": "fetched",
-"jobs": 39,
+"jobs": 40,
 "source": "lever",
 "reason": ""
 },
@@ -301,7 +301,7 @@
 },
 "bybit.com": {
 "state": "fetched",
-"jobs": 169,
+"jobs": 168,
 "source": "greenhouse",
 "reason": ""
 },
@@ -348,10 +348,10 @@
 "reason": "LinkedIn blocks automated reading; not fetched"
 },
 "cmcmarkets.com": {
-"state": "fetched",
-"jobs": 40,
+"state": "not fetched",
+"jobs": 0,
 "source": "workday",
-"reason": ""
+"reason": "board did not answer"
 },
 "cmtrading.com": {
 "state": "not fetched",
@@ -565,7 +565,7 @@
 },
 "eightcap.com": {
 "state": "fetched",
-"jobs": 10,
+"jobs": 8,
 "source": "workable",
 "reason": ""
 },
@@ -583,7 +583,7 @@
 },
 "etoro.com": {
 "state": "fetched",
-"jobs": 18,
+"jobs": 17,
 "source": "greenhouse",
 "reason": ""
 },
@@ -967,7 +967,7 @@
 },
 "justmarkets.com": {
 "state": "fetched",
-"jobs": 138,
+"jobs": 139,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1453,7 +1453,7 @@
 },
 "the5ers.com": {
 "state": "fetched",
-"jobs": 7,
+"jobs": 5,
 "source": "comeet",
 "reason": ""
 },
@@ -1483,7 +1483,7 @@
 },
 "tmgm.com": {
 "state": "fetched",
-"jobs": 56,
+"jobs": 57,
 "source": "workable",
 "reason": ""
 },
