@@ -103,7 +103,7 @@
 },
 "binance.com": {
 "state": "fetched",
-"jobs": 226,
+"jobs": 223,
 "source": "greenhouse",
 "reason": ""
 },
@@ -115,7 +115,7 @@
 },
 "bit2me.com": {
 "state": "fetched",
-"jobs": 2,
+"jobs": 4,
 "source": "web page (structured data)",
 "reason": ""
 },
@@ -133,7 +133,7 @@
 },
 "bitfinex.com": {
 "state": "fetched",
-"jobs": 24,
+"jobs": 23,
 "source": "recruitee",
 "reason": ""
 },
@@ -145,7 +145,7 @@
 },
 "bitget.com": {
 "state": "fetched",
-"jobs": 276,
+"jobs": 273,
 "source": "moka",
 "reason": ""
 },
@@ -187,7 +187,7 @@
 },
 "bitpanda.com": {
 "state": "fetched",
-"jobs": 38,
+"jobs": 36,
 "source": "greenhouse",
 "reason": ""
 },
@@ -277,7 +277,7 @@
 },
 "btse.com": {
 "state": "fetched",
-"jobs": 38,
+"jobs": 37,
 "source": "lever",
 "reason": ""
 },
@@ -301,7 +301,7 @@
 },
 "bybit.com": {
 "state": "fetched",
-"jobs": 167,
+"jobs": 165,
 "source": "greenhouse",
 "reason": ""
 },
@@ -319,7 +319,7 @@
 },
 "capital.com": {
 "state": "fetched",
-"jobs": 37,
+"jobs": 36,
 "source": "lever",
 "reason": ""
 },
@@ -439,7 +439,7 @@
 },
 "crypto.com": {
 "state": "fetched",
-"jobs": 93,
+"jobs": 94,
 "source": "lever",
 "reason": ""
 },
@@ -601,7 +601,7 @@
 },
 "exness.com": {
 "state": "fetched",
-"jobs": 40,
+"jobs": 39,
 "source": "greenhouse",
 "reason": ""
 },
@@ -709,7 +709,7 @@
 },
 "fxpro.com": {
 "state": "fetched",
-"jobs": 53,
+"jobs": 50,
 "source": "greenhouse",
 "reason": ""
 },
@@ -985,13 +985,13 @@
 },
 "kraken.com": {
 "state": "fetched",
-"jobs": 93,
+"jobs": 97,
 "source": "ashby",
 "reason": ""
 },
 "kucoin.com": {
 "state": "fetched",
-"jobs": 35,
+"jobs": 34,
 "source": "moka",
 "reason": ""
 },
@@ -1015,7 +1015,7 @@
 },
 "libertex.com": {
 "state": "fetched",
-"jobs": 15,
+"jobs": 16,
 "source": "workable",
 "reason": ""
 },
@@ -1032,10 +1032,10 @@
 "reason": "page did not finish loading in a browser, and a plain fetch found no machine-readable job data"
 },
 "luno.com": {
-"state": "fetched",
-"jobs": 7,
+"state": "not fetched",
+"jobs": 0,
 "source": "greenhouse",
-"reason": ""
+"reason": "board did not answer"
 },
 "m2.com": {
 "state": "not fetched",
@@ -1140,10 +1140,10 @@
 "reason": "no job listings found on the page"
 },
 "myfundedfutures.com": {
-"state": "fetched",
-"jobs": 8,
+"state": "not fetched",
+"jobs": 0,
 "source": "greenhouse",
-"reason": ""
+"reason": "board did not answer"
 },
 "naga.com": {
 "state": "fetched",
@@ -1201,7 +1201,7 @@
 },
 "okx.com": {
 "state": "fetched",
-"jobs": 388,
+"jobs": 386,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1285,7 +1285,7 @@
 },
 "pepperstone.com": {
 "state": "fetched",
-"jobs": 14,
+"jobs": 17,
 "source": "workable",
 "reason": ""
 },
@@ -1423,7 +1423,7 @@
 },
 "swissquote.com": {
 "state": "fetched",
-"jobs": 31,
+"jobs": 33,
 "source": "smartrecruiters",
 "reason": ""
 },
@@ -1465,7 +1465,7 @@
 },
 "tickmill.com": {
 "state": "fetched",
-"jobs": 47,
+"jobs": 48,
 "source": "bamboohr",
 "reason": ""
 },
@@ -1537,7 +1537,7 @@
 },
 "trading212.com": {
 "state": "fetched",
-"jobs": 42,
+"jobs": 39,
 "source": "ashby",
 "reason": ""
 },
@@ -1621,13 +1621,13 @@
 },
 "weltrade.com": {
 "state": "fetched",
-"jobs": 7,
+"jobs": 5,
 "source": "peopleforce",
 "reason": ""
 },
 "whitebit.com": {
 "state": "fetched",
-"jobs": 55,
+"jobs": 52,
 "source": "greenhouse",
 "reason": ""
 },
@@ -1645,7 +1645,7 @@
 },
 "xm.com": {
 "state": "fetched",
-"jobs": 69,
+"jobs": 68,
 "source": "lever",
 "reason": ""
 },
@@ -1663,7 +1663,7 @@
 },
 "xtb.com": {
 "state": "fetched",
-"jobs": 44,
+"jobs": 40,
 "source": "lever",
 "reason": ""
 },
